@@ -169,7 +169,7 @@ public class LoginFrame extends JFrame {
 									}
 									dispose();
 									loginDay = comboBox.getSelectedItem().toString();
-									new MenuFrame();
+									new MenuFrame(UsersDao.getInstance().QueryID(account));
 								}
 								else{
 									warnLabel.setText("清空登录失败次数或重置解锁时间失败");
