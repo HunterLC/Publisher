@@ -3,6 +3,7 @@ package ui;
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.EventQueue;
+import java.awt.Font;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -94,6 +95,7 @@ public class UsersRightsFrame extends JFrame {
 		updatePanel.setLayout(null);
 		
 		deleteButton = new JButton("删除");
+		deleteButton.setFont(new Font("宋体", Font.PLAIN, 20));
 		deleteButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				int selection = JOptionPane.showConfirmDialog(null,"确认删除该用户？","删除",JOptionPane.OK_CANCEL_OPTION,JOptionPane.QUESTION_MESSAGE);
@@ -116,10 +118,11 @@ public class UsersRightsFrame extends JFrame {
 			}
 		});
 		deleteButton.setEnabled(false);
-		deleteButton.setBounds(230, 47, 98, 27);
+		deleteButton.setBounds(230, 30, 98, 44);
 		updatePanel.add(deleteButton);
 		
 		saveButton = new JButton("保存");
+		saveButton.setFont(new Font("宋体", Font.PLAIN, 20));
 		saveButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				String username = usernameTextField.getText();
@@ -147,10 +150,11 @@ public class UsersRightsFrame extends JFrame {
 				RefreshUserListPanel();//刷新table以及总人数
 			}
 		});
-		saveButton.setBounds(342, 47, 95, 27);
+		saveButton.setBounds(361, 30, 95, 44);
 		updatePanel.add(saveButton);
 		
 		resetButton = new JButton("复位");
+		resetButton.setFont(new Font("宋体", Font.PLAIN, 20));
 		resetButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				RefreshUserListPanel();//刷新table以及总人数
@@ -166,33 +170,36 @@ public class UsersRightsFrame extends JFrame {
 				updatePanel.repaint();
 			}
 		});
-		resetButton.setBounds(451, 47, 92, 27);
+		resetButton.setBounds(491, 30, 92, 44);
 		updatePanel.add(resetButton);
 		
 		closeButton = new JButton("关闭");
+		closeButton.setFont(new Font("宋体", Font.PLAIN, 20));
 		closeButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				System.exit(0);
 			}
 		});
-		closeButton.setBounds(557, 47, 95, 27);
+		closeButton.setBounds(612, 30, 95, 44);
 		updatePanel.add(closeButton);
 		
 		usernameLabel = new JLabel("用户名");
+		usernameLabel.setFont(new Font("宋体", Font.PLAIN, 20));
 		usernameLabel.setBounds(14, 30, 72, 18);
 		updatePanel.add(usernameLabel);
 		
 		passwordLabel = new JLabel("密码");
+		passwordLabel.setFont(new Font("宋体", Font.PLAIN, 20));
 		passwordLabel.setBounds(14, 64, 72, 18);
 		updatePanel.add(passwordLabel);
 		
 		usernameTextField = new JTextField();
-		usernameTextField.setBounds(65, 27, 135, 24);
+		usernameTextField.setBounds(81, 29, 135, 24);
 		updatePanel.add(usernameTextField);
 		usernameTextField.setColumns(10);
 		
 		passwordTextField = new JTextField();
-		passwordTextField.setBounds(65, 61, 135, 24);
+		passwordTextField.setBounds(81, 63, 135, 24);
 		updatePanel.add(passwordTextField);
 		
 		userlistPanel = new JPanel();
@@ -215,6 +222,7 @@ public class UsersRightsFrame extends JFrame {
                 return false;
             }
         };
+        userTable.setFont(new Font("宋体", Font.BOLD, 14));
         userTable.addMouseListener(new MouseAdapter() {   //用户名表格点击事件
 			@Override
 			public void mouseClicked(MouseEvent arg0) {
@@ -235,9 +243,10 @@ public class UsersRightsFrame extends JFrame {
 		userlistScrollPane.setViewportView(userTable);
 		
 		totaluserLabel = new JLabel();
+		totaluserLabel.setFont(new Font("宋体", Font.PLAIN, 20));
 		totaluserLabel.setText("共"+UsersDao.getInstance().QueryUsersCount()+"人");
 		totaluserLabel.setForeground(Color.RED);
-		totaluserLabel.setBounds(54, 560, 96, 26);
+		totaluserLabel.setBounds(59, 560, 96, 26);
 		userlistPanel.add(totaluserLabel);
 		
 		userrightsPanel = new JPanel();
@@ -283,6 +292,7 @@ public class UsersRightsFrame extends JFrame {
                 return false;
             }
         };
+        unallocatedTable.setFont(new Font("宋体", Font.BOLD, 14));
         unallocatedTable.addMouseListener(new MouseAdapter() {   //未分配权限表格点击事件
 			@Override
 			public void mouseClicked(MouseEvent arg0) {
@@ -314,6 +324,7 @@ public class UsersRightsFrame extends JFrame {
                 return false;
             }
         };
+        allocatedTable.setFont(new Font("宋体", Font.BOLD, 14));
         allocatedTable.addMouseListener(new MouseAdapter() {   //已分配权限表格点击事件
 			@Override
 			public void mouseClicked(MouseEvent arg0) {
@@ -326,13 +337,15 @@ public class UsersRightsFrame extends JFrame {
 		yesScrollPane.setViewportView(allocatedTable);
 		
 		notLabel = new JLabel("未分项：0");
+		notLabel.setFont(new Font("宋体", Font.PLAIN, 20));
 		notLabel.setForeground(Color.RED);
 		notLabel.setBounds(77, 454, 115, 27);
 		userrightsPanel.add(notLabel);
 		
 		yesLabel = new JLabel("已分项：0");
+		yesLabel.setFont(new Font("宋体", Font.PLAIN, 20));
 		yesLabel.setForeground(Color.RED);
-		yesLabel.setBounds(448, 454, 106, 27);
+		yesLabel.setBounds(552, 454, 106, 27);
 		userrightsPanel.add(yesLabel);
 		
 	}

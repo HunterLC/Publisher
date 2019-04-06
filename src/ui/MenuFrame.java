@@ -22,6 +22,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
@@ -40,10 +41,9 @@ import javax.swing.event.TreeSelectionEvent;
 
 public class MenuFrame extends JFrame {
 
-	private JPanel contentPane,menuTreePanel,picturePanel;
-	private JLabel loginDateLabel,dateLabel,loginAgainLabel,closeLabel;
+	private JPanel contentPane,menuTreePanel;
+	private JLabel loginDateLabel,dateLabel,loginAgainLabel,closeLabel,pictureLabel;
 	private JScrollPane menuTreeScrollPane;
-	private JButton btnNewButton;
 	private DefaultMutableTreeNode root;
 	private JTree menuTree;
 
@@ -64,16 +64,19 @@ public class MenuFrame extends JFrame {
 		contentPane.setLayout(null);
 		
 		loginDateLabel = new JLabel("登陆日期：");
+		loginDateLabel.setFont(new Font("宋体", Font.PLAIN, 20));
 		loginDateLabel.setForeground(Color.RED);
-		loginDateLabel.setBounds(0, 13, 88, 18);
+		loginDateLabel.setBounds(0, 13, 111, 18);
 		contentPane.add(loginDateLabel);
 		
 		dateLabel = new JLabel(LoginFrame.loginDay);
+		dateLabel.setFont(new Font("宋体", Font.PLAIN, 20));
 		dateLabel.setForeground(Color.RED);
-		dateLabel.setBounds(68, 13, 72, 18);
+		dateLabel.setBounds(90, 13, 185, 18);
 		contentPane.add(dateLabel);
 		
 		loginAgainLabel = new JLabel("[重新登录]");
+		loginAgainLabel.setFont(new Font("宋体", Font.PLAIN, 20));
 		loginAgainLabel.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent arg0) {
@@ -82,10 +85,11 @@ public class MenuFrame extends JFrame {
 			}
 		});
 		loginAgainLabel.setForeground(Color.BLUE);
-		loginAgainLabel.setBounds(419, 410, 90, 18);
+		loginAgainLabel.setBounds(419, 410, 123, 18);
 		contentPane.add(loginAgainLabel);
 		
 		closeLabel = new JLabel("[关闭]");
+		closeLabel.setFont(new Font("宋体", Font.PLAIN, 20));
 		closeLabel.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
@@ -111,13 +115,17 @@ public class MenuFrame extends JFrame {
 		menuTree.setRowHeight(20);//树节点的行高为20像素
 		menuTree.setFont(new Font("宋体", Font.BOLD, 14));//设置树结点的字体
 		//节点间不采用连接线
+		ImageIcon img1 = new ImageIcon("image/frame_3.png");
+		ImageIcon img2 = new ImageIcon("image/frame_1.png");
+		ImageIcon img3 = new ImageIcon("image/frame_2.png");
 		menuTree.putClientProperty("JTree.lineStyle", "None");
 		DefaultTreeCellRenderer treeCellRenderer;// 获得树节点的绘制对象
 		treeCellRenderer = (DefaultTreeCellRenderer) menuTree.getCellRenderer();
-		treeCellRenderer.setLeafIcon(null);// 设置叶子节点不采用图标
-		treeCellRenderer.setClosedIcon(null);// 设置节点折叠时不采用图标
-		treeCellRenderer.setOpenIcon(null);// 设置节点展开时不采用图标
+		treeCellRenderer.setLeafIcon(img1);// 设置叶子节点采用图标
+		treeCellRenderer.setClosedIcon(img3);// 设置节点折叠时采用图标
+		treeCellRenderer.setOpenIcon(img2);// 设置节点展开时采用图标
 		menuTreeScrollPane.setViewportView(menuTree);
+		
 		//捕获树节点选择事件
 		menuTree.addTreeSelectionListener(new TreeSelectionListener(){
 			public void valueChanged(TreeSelectionEvent e) {
@@ -150,19 +158,11 @@ public class MenuFrame extends JFrame {
 			}
 		});
 		
-		picturePanel = new JPanel();
-		picturePanel.setBounds(209, 44, 489, 353);
-		contentPane.add(picturePanel);
-		picturePanel.setLayout(null);
-		
-		btnNewButton = new JButton("New button");
-		btnNewButton.setBounds(269, 115, 113, 27);
-		picturePanel.add(btnNewButton);
-		btnNewButton.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent arg0) {
-				new UsersRightsFrame();
-			}
-		});
+		ImageIcon img = new ImageIcon("image/menu_2.png");
+		pictureLabel = new JLabel();
+		pictureLabel.setIcon(img);
+		pictureLabel.setBounds(209, 44, 489, 353);
+		contentPane.add(pictureLabel);
 		Thread t1= new Thread(){
             public void run(){
             	String title = "☆出版社管理信息系统☆   当前用户:";

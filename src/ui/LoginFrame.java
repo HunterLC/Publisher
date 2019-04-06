@@ -51,6 +51,9 @@ public class LoginFrame extends JFrame {
 	private JCheckBox chckbxNewCheckBox;
 	private JComboBox comboBox;
 	public static String loginDay = null;
+	private JLabel label;
+	private JLabel lblNewLabel_1;
+	private JLabel label_1;
 
 	/**
 	 * Launch the application.
@@ -78,25 +81,26 @@ public class LoginFrame extends JFrame {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 686, 478);
 		contentPane = new JPanel();
+		contentPane.setBackground(Color.WHITE);
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 		setLocationRelativeTo(null);
 		
 		lblNewLabel = new JLabel("出版社管理信息系统");
-		lblNewLabel.setFont(new Font("方正舒体", Font.PLAIN, 30));
+		lblNewLabel.setFont(new Font("方正舒体", Font.PLAIN, 40));
 		lblNewLabel.setForeground(Color.WHITE);
-		lblNewLabel.setBounds(109, 78, 341, 52);
+		lblNewLabel.setBounds(109, 78, 371, 52);
 		contentPane.add(lblNewLabel);
 		
-		accountLabel = new JLabel("用户名：");
+		accountLabel = new JLabel("用户名");
 		accountLabel.setFont(new Font("方正舒体", Font.PLAIN, 24));
-		accountLabel.setBounds(83, 249, 113, 18);
+		accountLabel.setBounds(103, 245, 113, 18);
 		contentPane.add(accountLabel);
 		
-		passwordLabel = new JLabel("\u5BC6  \u7801\uFF1A");
+		passwordLabel = new JLabel("\u5BC6  \u7801");
 		passwordLabel.setFont(new Font("方正舒体", Font.PLAIN, 24));
-		passwordLabel.setBounds(83, 288, 98, 24);
+		passwordLabel.setBounds(102, 284, 98, 24);
 		contentPane.add(passwordLabel);
 		
 		accountTextField = new JTextField();
@@ -129,6 +133,7 @@ public class LoginFrame extends JFrame {
 		}
 		
 		JButton loginButton = new JButton("登录");
+		loginButton.setFont(new Font("宋体", Font.PLAIN, 20));
 		loginButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {           //处理登录操作
 				String account;
@@ -228,12 +233,13 @@ public class LoginFrame extends JFrame {
 		loginButton.setBounds(195, 372, 113, 27);
 		contentPane.add(loginButton);
 		
-		loginDateLabel = new JLabel("\u5DE5\u4F5C\u65E5\u671F\uFF1A");
+		loginDateLabel = new JLabel("\u5DE5\u4F5C\u65E5\u671F");
 		loginDateLabel.setFont(new Font("方正舒体", Font.PLAIN, 24));
 		loginDateLabel.setBounds(83, 325, 133, 18);
 		contentPane.add(loginDateLabel);
 		
 		comboBox = new JComboBox();
+		comboBox.setBackground(Color.WHITE);
 		SimpleDateFormat sdf = new SimpleDateFormat("yyyy/MM/dd");
 		List<String> calendarList = new ArrayList<String>();//获取当前日期以及之前的日期
 		try {
@@ -259,6 +265,8 @@ public class LoginFrame extends JFrame {
 		contentPane.add(imageLabel);
 		
 		chckbxNewCheckBox = new JCheckBox("记住密码");
+		chckbxNewCheckBox.setBackground(Color.WHITE);
+		chckbxNewCheckBox.setFont(new Font("宋体", Font.PLAIN, 20));
 		try {
 			if( MyProperties.getInstance().getProperty("remember").equals("true"))
 				chckbxNewCheckBox.setSelected(true);
@@ -277,6 +285,7 @@ public class LoginFrame extends JFrame {
 		contentPane.add(warnLabel);
 		
 		JButton btnNewButton = new JButton("取消");
+		btnNewButton.setFont(new Font("宋体", Font.PLAIN, 20));
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				System.exit(0);
@@ -284,6 +293,24 @@ public class LoginFrame extends JFrame {
 		});
 		btnNewButton.setBounds(337, 372, 113, 27);
 		contentPane.add(btnNewButton);
+		
+		ImageIcon img1 = new ImageIcon("image/login_002.png");
+		ImageIcon img2 = new ImageIcon("image/login_003.png");
+		ImageIcon img3 = new ImageIcon("image/login_004.png");
+		label = new JLabel();
+		label.setBounds(47, 246, 34, 34);
+		label.setIcon(img1);
+		contentPane.add(label);
+		
+		lblNewLabel_1 = new JLabel();
+		lblNewLabel_1.setBounds(47, 281, 34, 34);
+		lblNewLabel_1.setIcon(img2);
+		contentPane.add(lblNewLabel_1);
+		
+		label_1 = new JLabel();
+		label_1.setIcon(img3);
+		label_1.setBounds(47, 320, 34, 34);
+		contentPane.add(label_1);
 		
 	}
 }
