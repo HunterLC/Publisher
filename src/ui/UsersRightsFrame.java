@@ -77,12 +77,6 @@ public class UsersRightsFrame extends JFrame {
 	 * Create the frame.
 	 */
 	public UsersRightsFrame() {
-		addWindowListener(new WindowAdapter() {
-			@Override
-			public void windowClosing(WindowEvent arg0) {
-				dispose();
-			}
-		});
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		setTitle("【用户注册及权限管理】");
 		setBounds(100, 100, 1021, 659);

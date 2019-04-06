@@ -58,4 +58,24 @@ public class RightsDao {
 		}
 		return 0;
 	}
+	
+	/**
+	 * 按照权限名查询窗口名
+	 * @param name
+	 * @return
+	 */
+	public String QueryW_Name(String name){
+		String sql = "select W_name from Rights where rightName = ?";
+		Object[] parameters = {name};
+		ResultSet rs = MyDbHelper.executeQuery(sql, parameters);
+		try {
+			while(rs.next()){
+				return rs.getString("W_name");
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return null;
+	}
 }
