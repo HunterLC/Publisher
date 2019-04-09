@@ -13,7 +13,7 @@ public class W_xsrk extends JFrame {
 
 	public W_xsrk() {
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-		setBounds(100, 100, 450, 300);
+		setBounds(100, 100, 916, 594);
 		setTitle("–¬ È»Îø‚");
 		setVisible(true);
 		setLocationRelativeTo(null);

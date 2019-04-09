@@ -26,12 +26,15 @@ import javax.swing.table.DefaultTableModel;
 import bll.UsersDao;
 import bll.UsersRightsDao;
 import model.Users;
+import util.MyProperties;
+
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
+import java.io.IOException;
 
 public class UsersRightsFrame extends JFrame {
 
@@ -137,6 +140,15 @@ public class UsersRightsFrame extends JFrame {
 						if(!UsersDao.getInstance().QueryUserByID(CURRENTUSERID).getUsername().equals(username) && UsersDao.getInstance().UserIsExist(username))
 							JOptionPane.showMessageDialog(null,"该用户名已经存在","提示",JOptionPane.INFORMATION_MESSAGE);
 						else{//未修改用户名或用户名不存在
+							if(UsersDao.getInstance().QueryID(UsersDao.MyUser) == CURRENTUSERID ) { //修改当前登录用户
+								try {
+									MyProperties.WriteProperties("F:/Eclipse/eclipse/code/Publisher/bin/my.properties","username", username);
+									MyProperties.WriteProperties("F:/Eclipse/eclipse/code/Publisher/bin/my.properties","password", password);
+								} catch (IOException e) {
+									// TODO Auto-generated catch block
+									e.printStackTrace();
+								}
+							}
 							UsersDao.getInstance().UpdateUser(username, password,CURRENTUSERID);
 						}
 					}
@@ -177,7 +189,7 @@ public class UsersRightsFrame extends JFrame {
 		closeButton.setFont(new Font("宋体", Font.PLAIN, 20));
 		closeButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				System.exit(0);
+				dispose();
 			}
 		});
 		closeButton.setBounds(612, 30, 95, 44);
@@ -194,11 +206,13 @@ public class UsersRightsFrame extends JFrame {
 		updatePanel.add(passwordLabel);
 		
 		usernameTextField = new JTextField();
+		usernameTextField.setFont(new Font("宋体", Font.PLAIN, 14));
 		usernameTextField.setBounds(81, 29, 135, 24);
 		updatePanel.add(usernameTextField);
 		usernameTextField.setColumns(10);
 		
 		passwordTextField = new JTextField();
+		passwordTextField.setFont(new Font("宋体", Font.PLAIN, 14));
 		passwordTextField.setBounds(81, 63, 135, 24);
 		updatePanel.add(passwordTextField);
 		
@@ -214,6 +228,7 @@ public class UsersRightsFrame extends JFrame {
 		
         //初始化表格
 		userTable = new JTable();
+		userTable.setRowHeight(25);
 		userTable.setBorder(new LineBorder(new Color(0, 0, 0)));
         head=new String[] {"用户名"};
         tableModel=new DefaultTableModel(queryData(),head){
@@ -284,6 +299,7 @@ public class UsersRightsFrame extends JFrame {
 		userrightsPanel.add(notScrollPane);
 		
 		unallocatedTable = new JTable();
+		unallocatedTable.setRowHeight(25);
 		unallocatedTable.setBorder(new LineBorder(new Color(0, 0, 0)));
         unallocatedHead=new String[] {"功能模块","未分基本权限"};
         tableModel1=new DefaultTableModel(null,unallocatedHead){
@@ -316,6 +332,7 @@ public class UsersRightsFrame extends JFrame {
 		userrightsPanel.add(yesScrollPane);
 		
 		allocatedTable = new JTable();
+		allocatedTable.setRowHeight(25);
 		allocatedTable.setBorder(new LineBorder(new Color(0, 0, 0)));
         allocatedHead=new String[] {"功能模块","已分基本权限"};
         tableModel2=new DefaultTableModel(null,allocatedHead){

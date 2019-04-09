@@ -13,7 +13,7 @@ public class W_zgcx extends JFrame {
 
 	public W_zgcx() {
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-		setBounds(100, 100, 450, 300);
+		setBounds(100, 100, 939, 559);
 		setTitle("×é¸å²éÑ¯");
 		setVisible(true);
 		setLocationRelativeTo(null);

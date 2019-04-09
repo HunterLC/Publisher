@@ -175,8 +175,8 @@ public class UsersDao {
 	 * @return
 	 */
 	public int AddUser(String username,String password){
-		String sql = "insert into Users values(?,?)";
-		Object[] parameters = {username,password};
+		String sql = "insert into Users values(?,?,?,?)";
+		Object[] parameters = {username,password,0,null};
 		if( MyDbHelper.executeNonQuery(sql, parameters) != 0)//执行影响行数不为0
 			return 1;
 		return 0;

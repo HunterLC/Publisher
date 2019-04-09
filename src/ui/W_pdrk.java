@@ -13,7 +13,7 @@ public class W_pdrk extends JFrame {
 
 	public W_pdrk() {
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-		setBounds(100, 100, 450, 300);
+		setBounds(100, 100, 900, 586);
 		setTitle("≈Ãµ„»Îø‚");
 		setVisible(true);
 		setLocationRelativeTo(null);

@@ -13,7 +13,7 @@ public class W_tsdj extends JFrame {
 
 	public W_tsdj() {
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-		setBounds(100, 100, 450, 300);
+		setBounds(100, 100, 862, 603);
 		setTitle("Õº È∂®º€");
 		setVisible(true);
 		setLocationRelativeTo(null);

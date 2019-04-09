@@ -75,6 +75,7 @@ public class LoginFrame extends JFrame {
 	 * Create the frame.
 	 */
 	public LoginFrame() {
+		setFont(new Font("方正舒体", Font.PLAIN, 26));
 		setTitle("出版社管理信息系统");
 		setResizable(false);
 		setVisible(true);
@@ -165,9 +166,9 @@ public class LoginFrame extends JFrame {
 								if(UsersDao.getInstance().setFault_Time(0, account) && UsersDao.getInstance().setUnlock_Time(null, account)){
 									warnLabel.setText("登录成功");
 									try {
-										MyProperties.WriteProperties("E:/Eclipse/eclipse/code/Publisher/bin/my.properties","username", account);
-										MyProperties.WriteProperties("E:/Eclipse/eclipse/code/Publisher/bin/my.properties","password", password);
-										MyProperties.WriteProperties("E:/Eclipse/eclipse/code/Publisher/bin/my.properties", "remember", chckbxNewCheckBox.isSelected()==true ? "true": "false");
+										MyProperties.WriteProperties("F:/Eclipse/eclipse/code/Publisher/bin/my.properties","username", account);
+										MyProperties.WriteProperties("F:/Eclipse/eclipse/code/Publisher/bin/my.properties","password", password);
+										MyProperties.WriteProperties("F:/Eclipse/eclipse/code/Publisher/bin/my.properties", "remember", chckbxNewCheckBox.isSelected()==true ? "true": "false");
 									} catch (IOException e) {
 										// TODO Auto-generated catch block
 										e.printStackTrace();

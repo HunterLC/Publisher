@@ -55,7 +55,7 @@ public class MenuFrame extends JFrame {
 		
 		setResizable(false);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 718, 476);
+		setBounds(100, 100, 1022, 628);
 		setVisible(true);
 		setLocationRelativeTo(null);
 		contentPane = new JPanel();
@@ -66,13 +66,13 @@ public class MenuFrame extends JFrame {
 		loginDateLabel = new JLabel("登陆日期：");
 		loginDateLabel.setFont(new Font("宋体", Font.PLAIN, 20));
 		loginDateLabel.setForeground(Color.RED);
-		loginDateLabel.setBounds(0, 13, 111, 18);
+		loginDateLabel.setBounds(14, 13, 111, 18);
 		contentPane.add(loginDateLabel);
 		
 		dateLabel = new JLabel(LoginFrame.loginDay);
 		dateLabel.setFont(new Font("宋体", Font.PLAIN, 20));
 		dateLabel.setForeground(Color.RED);
-		dateLabel.setBounds(90, 13, 185, 18);
+		dateLabel.setBounds(104, 13, 185, 18);
 		contentPane.add(dateLabel);
 		
 		loginAgainLabel = new JLabel("[重新登录]");
@@ -85,7 +85,7 @@ public class MenuFrame extends JFrame {
 			}
 		});
 		loginAgainLabel.setForeground(Color.BLUE);
-		loginAgainLabel.setBounds(419, 410, 123, 18);
+		loginAgainLabel.setBounds(471, 562, 123, 18);
 		contentPane.add(loginAgainLabel);
 		
 		closeLabel = new JLabel("[关闭]");
@@ -97,23 +97,24 @@ public class MenuFrame extends JFrame {
 			}
 		});
 		closeLabel.setForeground(Color.BLUE);
-		closeLabel.setBounds(556, 410, 72, 18);
+		closeLabel.setBounds(725, 562, 72, 18);
 		contentPane.add(closeLabel);
 		
 		menuTreePanel = new JPanel();
+		menuTreePanel.setFont(new Font("宋体", Font.PLAIN, 20));
 		menuTreePanel.setBorder(new TitledBorder(UIManager.getBorder("TitledBorder.border"), "菜单", TitledBorder.CENTER, TitledBorder.TOP, null, new Color(210, 105, 30)));
-		menuTreePanel.setBounds(10, 44, 185, 353);
+		menuTreePanel.setBounds(10, 44, 239, 536);
 		contentPane.add(menuTreePanel);
 		menuTreePanel.setLayout(null);
 		
 		menuTreeScrollPane = new JScrollPane();
-		menuTreeScrollPane.setBounds(14, 25, 157, 315);
+		menuTreeScrollPane.setBounds(14, 25, 211, 498);
 		menuTreePanel.add(menuTreeScrollPane);
 		
 		menuTree = new JTree(QueryRoot(userID));// 利用根节点直接创建树
 		menuTree.setRootVisible(false);
-		menuTree.setRowHeight(20);//树节点的行高为20像素
-		menuTree.setFont(new Font("宋体", Font.BOLD, 14));//设置树结点的字体
+		menuTree.setRowHeight(30);//树节点的行高为30像素
+		menuTree.setFont(new Font("宋体", Font.BOLD, 16));//设置树结点的字体
 		//节点间不采用连接线
 		ImageIcon img1 = new ImageIcon("image/frame_3.png");
 		ImageIcon img2 = new ImageIcon("image/frame_1.png");
@@ -158,10 +159,10 @@ public class MenuFrame extends JFrame {
 			}
 		});
 		
-		ImageIcon img = new ImageIcon("image/menu_2.png");
+		ImageIcon img = new ImageIcon("image/menu.png");
 		pictureLabel = new JLabel();
 		pictureLabel.setIcon(img);
-		pictureLabel.setBounds(209, 44, 489, 353);
+		pictureLabel.setBounds(263, 44, 728, 509);
 		contentPane.add(pictureLabel);
 		Thread t1= new Thread(){
             public void run(){

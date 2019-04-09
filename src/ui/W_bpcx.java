@@ -13,7 +13,7 @@ public class W_bpcx extends JFrame {
 
 	public W_bpcx() {
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-		setBounds(100, 100, 450, 300);
+		setBounds(100, 100, 899, 552);
 		setTitle("±¨Åú²éÑ¯");
 		setVisible(true);
 		setLocationRelativeTo(null);
