@@ -13,7 +13,7 @@ public class W_xtgl extends JFrame {
 
 	public W_xtgl() {
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-		setBounds(100, 100, 931, 588);
+		setBounds(100, 100, 1022, 628);
 		setTitle("选题管理");
 		setVisible(true);
 		setLocationRelativeTo(null);

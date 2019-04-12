@@ -13,7 +13,7 @@ public class W_yszd extends JFrame {
 
 	public W_yszd() {
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-		setBounds(100, 100, 986, 599);
+		setBounds(100, 100, 1022, 628);
 		setTitle("Ó¡Ë¢×°¶©");
 		setVisible(true);
 		setLocationRelativeTo(null);

@@ -13,7 +13,7 @@ public class W_jscl extends JFrame {
 
 	public W_jscl() {
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-		setBounds(100, 100, 905, 586);
+		setBounds(100, 100, 1022, 628);
 		setTitle("Ω·À„¥¶¿Ì");
 		setVisible(true);
 		setLocationRelativeTo(null);

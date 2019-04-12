@@ -13,7 +13,7 @@ public class W_jhfp extends JFrame {
 
 	public W_jhfp() {
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-		setBounds(100, 100, 932, 584);
+		setBounds(100, 100, 1022, 628);
 		setTitle("º∆ªÆ∑¢≈≈");
 		setVisible(true);
 		setLocationRelativeTo(null);

@@ -76,7 +76,7 @@ public class MenuFrame extends JFrame {
 		contentPane.add(dateLabel);
 		
 		loginAgainLabel = new JLabel("[重新登录]");
-		loginAgainLabel.setFont(new Font("宋体", Font.PLAIN, 20));
+		loginAgainLabel.setFont(new Font("宋体", Font.PLAIN, 24));
 		loginAgainLabel.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent arg0) {
@@ -85,11 +85,11 @@ public class MenuFrame extends JFrame {
 			}
 		});
 		loginAgainLabel.setForeground(Color.BLUE);
-		loginAgainLabel.setBounds(471, 562, 123, 18);
+		loginAgainLabel.setBounds(471, 556, 123, 24);
 		contentPane.add(loginAgainLabel);
 		
 		closeLabel = new JLabel("[关闭]");
-		closeLabel.setFont(new Font("宋体", Font.PLAIN, 20));
+		closeLabel.setFont(new Font("宋体", Font.PLAIN, 24));
 		closeLabel.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
@@ -97,7 +97,7 @@ public class MenuFrame extends JFrame {
 			}
 		});
 		closeLabel.setForeground(Color.BLUE);
-		closeLabel.setBounds(725, 562, 72, 18);
+		closeLabel.setBounds(725, 556, 72, 24);
 		contentPane.add(closeLabel);
 		
 		menuTreePanel = new JPanel();

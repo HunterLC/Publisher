@@ -96,16 +96,17 @@ public class LoginFrame extends JFrame {
 		
 		accountLabel = new JLabel("用户名");
 		accountLabel.setFont(new Font("方正舒体", Font.PLAIN, 24));
-		accountLabel.setBounds(103, 245, 113, 18);
+		accountLabel.setBounds(138, 245, 113, 18);
 		contentPane.add(accountLabel);
 		
 		passwordLabel = new JLabel("\u5BC6  \u7801");
 		passwordLabel.setFont(new Font("方正舒体", Font.PLAIN, 24));
-		passwordLabel.setBounds(102, 284, 98, 24);
+		passwordLabel.setBounds(138, 284, 98, 24);
 		contentPane.add(passwordLabel);
 		
 		accountTextField = new JTextField();
-		accountTextField.setBounds(195, 246, 255, 24);
+		accountTextField.setFont(new Font("宋体", Font.PLAIN, 20));
+		accountTextField.setBounds(240, 244, 255, 24);
 		contentPane.add(accountTextField);
 		try {
 			if( !MyProperties.getInstance().getProperty("username").equals(null))
@@ -119,7 +120,8 @@ public class LoginFrame extends JFrame {
 		accountTextField.setColumns(10);
 		
 		passwordField = new JPasswordField();
-		passwordField.setBounds(195, 288, 255, 24);
+		passwordField.setFont(new Font("宋体", Font.PLAIN, 20));
+		passwordField.setBounds(240, 286, 255, 24);
 		contentPane.add(passwordField);
 		try {
 			if( MyProperties.getInstance().getProperty("username")!=null && MyProperties.getInstance().getProperty("remember").equals("true"))
@@ -231,12 +233,12 @@ public class LoginFrame extends JFrame {
 				
 			}
 		});
-		loginButton.setBounds(195, 372, 113, 27);
+		loginButton.setBounds(250, 353, 113, 45);
 		contentPane.add(loginButton);
 		
 		loginDateLabel = new JLabel("\u5DE5\u4F5C\u65E5\u671F");
 		loginDateLabel.setFont(new Font("方正舒体", Font.PLAIN, 24));
-		loginDateLabel.setBounds(83, 325, 133, 18);
+		loginDateLabel.setBounds(138, 322, 133, 18);
 		contentPane.add(loginDateLabel);
 		
 		comboBox = new JComboBox();
@@ -252,7 +254,7 @@ public class LoginFrame extends JFrame {
 				calendarList.add(sdf.format(calendar.getTime()));
 			}
 			comboBox.setModel(new DefaultComboBoxModel(calendarList.toArray()));   //初始化日期
-			comboBox.setBounds(195, 325, 255, 24);
+			comboBox.setBounds(240, 323, 255, 24);
 			contentPane.add(comboBox);
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
@@ -277,12 +279,13 @@ public class LoginFrame extends JFrame {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		chckbxNewCheckBox.setBounds(474, 288, 133, 27);
+		chckbxNewCheckBox.setBounds(517, 285, 133, 27);
 		contentPane.add(chckbxNewCheckBox);
 		
 		warnLabel = new JLabel("",JLabel.CENTER);
+		warnLabel.setFont(new Font("宋体", Font.PLAIN, 20));
 		warnLabel.setForeground(Color.RED);
-		warnLabel.setBounds(124, 412, 371, 18);
+		warnLabel.setBounds(196, 403, 379, 27);
 		contentPane.add(warnLabel);
 		
 		JButton btnNewButton = new JButton("取消");
@@ -292,25 +295,25 @@ public class LoginFrame extends JFrame {
 				System.exit(0);
 			}
 		});
-		btnNewButton.setBounds(337, 372, 113, 27);
+		btnNewButton.setBounds(377, 353, 113, 45);
 		contentPane.add(btnNewButton);
 		
 		ImageIcon img1 = new ImageIcon("image/login_002.png");
 		ImageIcon img2 = new ImageIcon("image/login_003.png");
 		ImageIcon img3 = new ImageIcon("image/login_004.png");
 		label = new JLabel();
-		label.setBounds(47, 246, 34, 34);
+		label.setBounds(95, 237, 34, 34);
 		label.setIcon(img1);
 		contentPane.add(label);
 		
 		lblNewLabel_1 = new JLabel();
-		lblNewLabel_1.setBounds(47, 281, 34, 34);
+		lblNewLabel_1.setBounds(95, 284, 34, 34);
 		lblNewLabel_1.setIcon(img2);
 		contentPane.add(lblNewLabel_1);
 		
 		label_1 = new JLabel();
 		label_1.setIcon(img3);
-		label_1.setBounds(47, 320, 34, 34);
+		label_1.setBounds(95, 313, 34, 34);
 		contentPane.add(label_1);
 		
 	}

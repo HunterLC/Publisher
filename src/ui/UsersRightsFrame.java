@@ -21,6 +21,7 @@ import javax.swing.border.LineBorder;
 import javax.swing.border.TitledBorder;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
+import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
 
 import bll.UsersDao;
@@ -92,6 +93,7 @@ public class UsersRightsFrame extends JFrame {
 		contentPane.setLayout(null);
 		updatePanel = new JPanel();
 		titledBorder = new TitledBorder(UIManager.getBorder("TitledBorder.border"), "新增", TitledBorder.LEADING, TitledBorder.TOP, null, Color.RED);
+		titledBorder.setTitleFont(new Font("宋体", Font.PLAIN, 20));
 		updatePanel.setBorder(titledBorder);
 		updatePanel.setBounds(227, 13, 762, 92);
 		contentPane.add(updatePanel);
@@ -155,11 +157,20 @@ public class UsersRightsFrame extends JFrame {
 					else if(CURRENTUSERID ==0 ){  //添加用户
 						if(UsersDao.getInstance().UserIsExist(username))
 							JOptionPane.showMessageDialog(null,"该用户名已经存在","提示",JOptionPane.INFORMATION_MESSAGE);
-						else
+						else {
 							UsersDao.getInstance().AddUser(username, password);
+							CURRENTUSERID = UsersDao.getInstance().QueryID(username);//更新当前id指针为新建用户的id
+						}
 					}
 				}
 				RefreshUserListPanel();//刷新table以及总人数
+				String queryName = UsersDao.getInstance().QueryUserByID(CURRENTUSERID).getUsername();
+				for(int i =0;i<userTable.getRowCount();i++)
+					if(queryName.equals(userTable.getValueAt(i,0).toString())){
+						userTable.setRowSelectionInterval(i,i);//设置新添加用户行为选中样式；
+						break;
+					}
+				RefreshUserRightsPanel();//刷新权限表
 			}
 		});
 		saveButton.setBounds(361, 30, 95, 44);
@@ -217,7 +228,9 @@ public class UsersRightsFrame extends JFrame {
 		updatePanel.add(passwordTextField);
 		
 		userlistPanel = new JPanel();
-		userlistPanel.setBorder(new TitledBorder(UIManager.getBorder("TitledBorder.border"), "用户一览表", TitledBorder.LEADING, TitledBorder.TOP, null, Color.RED));
+		TitledBorder titledBorder2 = new TitledBorder(UIManager.getBorder("TitledBorder.border"), "用户一览表", TitledBorder.LEADING, TitledBorder.TOP, null, Color.RED);
+		titledBorder2.setTitleFont(new Font("宋体", Font.PLAIN, 20));
+		userlistPanel.setBorder(titledBorder2);
 		userlistPanel.setBounds(14, 13, 199, 599);
 		contentPane.add(userlistPanel);
 		userlistPanel.setLayout(null);
@@ -254,6 +267,9 @@ public class UsersRightsFrame extends JFrame {
 				RefreshUserRightsPanel();  //刷新该用户的权限分配列表
 			}
 		});
+        DefaultTableCellRenderer r = new DefaultTableCellRenderer();
+        r.setHorizontalAlignment(JLabel.CENTER);
+        userTable.setDefaultRenderer(Object.class, r);
         userTable.setModel(tableModel);
 		userlistScrollPane.setViewportView(userTable);
 		
@@ -265,7 +281,9 @@ public class UsersRightsFrame extends JFrame {
 		userlistPanel.add(totaluserLabel);
 		
 		userrightsPanel = new JPanel();
-		userrightsPanel.setBorder(new TitledBorder(UIManager.getBorder("TitledBorder.border"), "基本权限分配", TitledBorder.LEADING, TitledBorder.TOP, null, Color.RED));
+		TitledBorder titledBorder3 = new TitledBorder(UIManager.getBorder("TitledBorder.border"), "基本权限分配", TitledBorder.LEADING, TitledBorder.TOP, null, Color.RED);
+		titledBorder3.setTitleFont(new Font("宋体", Font.PLAIN, 20));
+		userrightsPanel.setBorder(titledBorder3);
 		userrightsPanel.setBounds(227, 118, 762, 494);
 		contentPane.add(userrightsPanel);
 		userrightsPanel.setLayout(null);
@@ -324,6 +342,7 @@ public class UsersRightsFrame extends JFrame {
 				
 			}
 		});
+        unallocatedTable.setDefaultRenderer(Object.class, r);
         unallocatedTable.setModel(tableModel1);
 		notScrollPane.setViewportView(unallocatedTable);
 		
@@ -350,6 +369,7 @@ public class UsersRightsFrame extends JFrame {
 				increaseButton.setEnabled(false);
 			}
 		});
+        allocatedTable.setDefaultRenderer(Object.class, r);
         allocatedTable.setModel(tableModel2);
 		yesScrollPane.setViewportView(allocatedTable);
 		
