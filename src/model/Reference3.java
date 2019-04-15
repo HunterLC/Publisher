@@ -1,9 +1,9 @@
 package model;
 
-public class Reference {
+public class Reference3 {
 	private int ID;
 	private int bjsID;
-	private int bookTypeID;
+	private String bookTypeID;
 	private String shum;
 	public int getID() {
 		return ID;
@@ -17,10 +17,10 @@ public class Reference {
 	public void setBjsID(int bjsID) {
 		this.bjsID = bjsID;
 	}
-	public int getBookTypeID() {
+	public String getBookTypeID() {
 		return bookTypeID;
 	}
-	public void setBookTypeID(int bookTypeID) {
+	public void setBookTypeID(String bookTypeID) {
 		this.bookTypeID = bookTypeID;
 	}
 	public String getShum() {

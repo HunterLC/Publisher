@@ -16,14 +16,14 @@ import javax.swing.table.DefaultTableModel;
 import bll.CodeDao;
 import bll.IdentifierDao;
 import bll.NumDao;
-import bll.Reference1Dao;
+import bll.Reference2Dao;
+import bll.Reference3Dao;
 import bll.SimpleDao;
 import bll.UsersDao;
 import model.Bjs_Code;
 import model.Bjs_Identifier;
 import model.Bjs_Num;
-import model.Reference1;
-import model.Reference2;
+import model.Reference3;
 import model.Users;
 import util.MyProperties;
 
@@ -50,7 +50,7 @@ import java.awt.event.ActionEvent;
 import javax.swing.JRadioButton;
 import javax.swing.JComboBox;
 
-public class Reference_1 extends JFrame {
+public class Reference_3 extends JFrame {
 
 	private JPanel contentPane,listPanel,settingPanel;
 	private JTextField nameTextField;
@@ -72,7 +72,7 @@ public class Reference_1 extends JFrame {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					Reference_1 frame = new Reference_1();
+					Reference_3 frame = new Reference_3();
 					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -84,10 +84,10 @@ public class Reference_1 extends JFrame {
 	/**
 	 * Create the frame.
 	 */
-	public Reference_1() {
+	public Reference_3() {
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		setBounds(100, 100, 877, 554);
-		setTitle("【基本信息：引用类型一】");
+		setTitle("【基本信息：引用类型三】");
 		setVisible(true);
 		setLocationRelativeTo(null);
 		contentPane = new JPanel();
@@ -96,7 +96,7 @@ public class Reference_1 extends JFrame {
 		contentPane.setLayout(null);
 		
 		listPanel = new JPanel();
-		titledBorder = new TitledBorder(UIManager.getBorder("TitledBorder.border"), "共"+Reference1Dao.getInstance().QueryCount()+"项", TitledBorder.LEADING, TitledBorder.TOP, null, Color.RED);
+		titledBorder = new TitledBorder(UIManager.getBorder("TitledBorder.border"), "共"+Reference3Dao.getInstance().QueryCount()+"项", TitledBorder.LEADING, TitledBorder.TOP, null, Color.RED);
 		titledBorder.setTitleFont(new Font("宋体", Font.PLAIN, 20));
 		listPanel.setBorder(titledBorder);
 		listPanel.setBounds(14, 0, 831, 280);
@@ -129,7 +129,7 @@ public class Reference_1 extends JFrame {
 				String bookType = listTable.getValueAt(listTable.getSelectedRow(), 1).toString();
 				String shum = listTable.getValueAt(listTable.getSelectedRow(), 2).toString();
 				nameTextField.setText(shum);
-				CURRENTID = Reference1Dao.getInstance().QueryIDByName(shum);//获得当前选中编辑室的id
+				CURRENTID = Reference3Dao.getInstance().QueryIDByName(shum);//获得当前选中编辑室的id
 				nameComboBox.setSelectedItem(bjsName);
 				bookTypeComboBox.setSelectedItem(bookType);
 				deleteButton.setEnabled(true);
@@ -172,17 +172,17 @@ public class Reference_1 extends JFrame {
 				}
 				else {  //编辑室名不为空
 					if(CURRENTID !=0 ){  //当前选中了一项
-						if(!Reference1Dao.getInstance().QueryShumByID(CURRENTID).equals(shum) && Reference1Dao.getInstance().shumIsExist(shum))
+						if(!Reference3Dao.getInstance().QueryShumByID(CURRENTID).equals(shum) && Reference3Dao.getInstance().shumIsExist(shum))
 							JOptionPane.showMessageDialog(null,"该图书名已经存在","提示",JOptionPane.INFORMATION_MESSAGE);
 						else//修改之后的排序号、编辑室不存在					
-							Reference1Dao.getInstance().Update(bjsName,bookType,shum,CURRENTID);
+							Reference3Dao.getInstance().Update(IdentifierDao.getInstance().QueryIDByName(bjsName),CodeDao.getInstance().QueryCodeByName(bookType),shum,CURRENTID);
 					}
 					else if(CURRENTID ==0 ){  //添加编辑室
-						if(Reference1Dao.getInstance().shumIsExist(shum))
+						if(Reference3Dao.getInstance().shumIsExist(shum))
 							JOptionPane.showMessageDialog(null,"该图书名已经存在","提示",JOptionPane.INFORMATION_MESSAGE);
 						else {
-							Reference1Dao.getInstance().Add(bjsName,bookType,shum);
-							CURRENTID =Reference1Dao.getInstance().QueryIDByName(shum);//更新当前id指针为新建用户的id
+							Reference3Dao.getInstance().Add(IdentifierDao.getInstance().QueryIDByName(bjsName),CodeDao.getInstance().QueryCodeByName(bookType),shum);
+							CURRENTID =Reference3Dao.getInstance().QueryIDByName(shum);//更新当前id指针为新建用户的id
 							deleteButton.setEnabled(true);
 							resetButton.setEnabled(true);
 							titledBorder1.setTitle("修改");
@@ -202,10 +202,10 @@ public class Reference_1 extends JFrame {
 		deleteButton.setEnabled(false);
 		deleteButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				int selection = JOptionPane.showConfirmDialog(null,"确认删除"+Reference1Dao.getInstance().QueryShumByID(CURRENTID)+"？","删除",JOptionPane.OK_CANCEL_OPTION,JOptionPane.QUESTION_MESSAGE);
+				int selection = JOptionPane.showConfirmDialog(null,"确认删除"+Reference3Dao.getInstance().QueryShumByID(CURRENTID)+"？","删除",JOptionPane.OK_CANCEL_OPTION,JOptionPane.QUESTION_MESSAGE);
 				if( selection == JOptionPane.OK_OPTION ){
 					String shum = nameTextField.getText();
-					Reference1Dao.getInstance().Delete(shum);
+					Reference3Dao.getInstance().Delete(shum);
 					RefreshListPanel();//刷新table
 					listTable.clearSelection();
 					CURRENTID = 0; //当前用户id清零
@@ -281,12 +281,12 @@ public class Reference_1 extends JFrame {
      * @return
      */
     public Object[][] queryData(){
-        List<Reference1> list=Reference1Dao.getInstance().QueryAllByMethod1();
+        List<Reference3> list=Reference3Dao.getInstance().QueryAllByMethod1();
         data=new Object[list.size()][head.length];
         for(int i=0;i<list.size();i++){
             for(int j=0;j<head.length;j++){
-                data[i][0]=list.get(i).getBjsName();
-                data[i][1]=list.get(i).getBookType();
+                data[i][0]=IdentifierDao.getInstance().QueryNameByID(list.get(i).getBjsID());
+                data[i][1]=CodeDao.getInstance().QueryNameByCode(list.get(i).getBookTypeID());
                 data[i][2]=list.get(i).getShum();
             }
         }
@@ -304,7 +304,7 @@ public class Reference_1 extends JFrame {
         };
     	listTable.setModel(tableModel);
     	scrollPane.setViewportView(listTable);
-    	titledBorder.setTitle("共"+Reference1Dao.getInstance().QueryCount()+"项");
+    	titledBorder.setTitle("共"+Reference3Dao.getInstance().QueryCount()+"项");
 		listPanel.repaint();
 		listPanel.validate();
 		listPanel.repaint();
@@ -312,7 +312,7 @@ public class Reference_1 extends JFrame {
 	
 	//设置表格行选中
 	public void SetSelected(){
-		String queryName = Reference1Dao.getInstance().QueryShumByID(CURRENTID);
+		String queryName = Reference3Dao.getInstance().QueryShumByID(CURRENTID);
 		for(int i =0;i<listTable.getRowCount();i++)
 			if(queryName.equals(listTable.getValueAt(i,2).toString())){
 				listTable.setRowSelectionInterval(i,i);//设置新添加用户行为选中样式；

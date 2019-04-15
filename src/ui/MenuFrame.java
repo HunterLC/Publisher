@@ -246,6 +246,13 @@ public class MenuFrame extends JFrame {
 			case "W_xsrk":new W_xsrk();break;
 			case "W_pdrk":new W_pdrk();break;
 			case "W_yhqx":new UsersRightsFrame();break;
+			case "W_jdxbjs":new Manage_Simple();break;
+			case "W_pxhbjs":new Manage_Num();break;
+			case "W_bmhbjs":new Manage_Code();break;
+			case "W_bsbjs":new Manage_Identifier();break;
+			case "W_xxmyy":new Reference_1();break;
+			case "W_zjyy":new Reference_2();break;
+			case "W_bmyy":new Reference_3();break;
 		}
 	}
 }

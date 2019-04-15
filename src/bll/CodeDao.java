@@ -58,6 +58,21 @@ public class CodeDao {
 		return 0;
 	}
 	
+	public String QueryCodeByName(String name) {
+		String sql = "select Code from bjs_Code where booktype = ?";
+		Object[] parameters = {name};
+		ResultSet rs = MyDbHelper.executeQuery(sql,parameters);
+		try {
+			while(rs.next()) {
+				return rs.getString("Code");
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return null;
+	}
+	
 	/**
 	 * 按照id查询书类型
 	 * @param ID
@@ -66,6 +81,21 @@ public class CodeDao {
 	public String QueryNameByID(int ID) {
 		String sql = "select bookType from bjs_Code where ID = ?";
 		Object[] parameters = {ID};
+		ResultSet rs = MyDbHelper.executeQuery(sql,parameters);
+		try {
+			while(rs.next()) {
+				return rs.getString("bookType");
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return null;
+	}
+	
+	public String QueryNameByCode(String code) {
+		String sql = "select bookType from bjs_Code where Code = ?";
+		Object[] parameters = {code};
 		ResultSet rs = MyDbHelper.executeQuery(sql,parameters);
 		try {
 			while(rs.next()) {

@@ -7,27 +7,27 @@ import java.util.List;
 
 import dal.MyDbHelper;
 import model.Bjs_Identifier;
-import model.Reference;
+import model.Reference3;
 
-public class ReferenceDao {
-	public static ReferenceDao getInstance() {
-		return new ReferenceDao();
+public class Reference3Dao {
+	public static Reference3Dao getInstance() {
+		return new Reference3Dao();
 	}
 	
 	/**
 	 * 查询方案一，能用的
 	 * @return
 	 */
-	public List<Reference> QueryAllByMethod1(){
-		List<Reference> list = new ArrayList<Reference>();
-		String sql = "select * from ReferenceTest";
+	public List<Reference3> QueryAllByMethod1(){
+		List<Reference3> list = new ArrayList<Reference3>();
+		String sql = "select * from ReferenceTest3 order by bjsID";
 		ResultSet rs = MyDbHelper.executeQuery(sql);
 		try {
 			while(rs.next()) {
-				Reference item = new Reference();
+				Reference3 item = new Reference3();
 				item.setID(rs.getInt("ID"));
 				item.setBjsID(rs.getInt("bjsID"));
-				item.setBookTypeID(rs.getInt("bookTypeID"));
+				item.setBookTypeID(rs.getString("bookTypeID"));
 				item.setShum(rs.getString("shum"));
 				list.add(item);
 			}
@@ -40,7 +40,7 @@ public class ReferenceDao {
 	}
 	
 	public int QueryIDByName(String name) {
-		String sql = "select ID from ReferenceTest where shum = ?";
+		String sql = "select ID from ReferenceTest3 where shum = ?";
 		Object[] parameters = {name};
 		ResultSet rs = MyDbHelper.executeQuery(sql,parameters);
 		try {
@@ -54,8 +54,8 @@ public class ReferenceDao {
 		return 0;
 	}
 	
-	public int Update(int bjsID,int bookTypeID,String shum,int id){
-		String sql = "update ReferenceTest set bjsID = ?,bookTypeID = ?,shum = ? where ID = ?";
+	public int Update(int bjsID,String bookTypeID,String shum,int id){
+		String sql = "update ReferenceTest3 set bjsID = ?,bookTypeID = ?,shum = ? where ID = ?";
 		Object[] parameters = {bjsID,bookTypeID,shum,id};
 		if( MyDbHelper.executeNonQuery(sql, parameters) != 0)//执行影响行数不为0
 			return 1;
@@ -64,15 +64,15 @@ public class ReferenceDao {
 	
 
 	public int Delete(String shum){
-		String sql = "delete from ReferenceTest where shum = ?";
+		String sql = "delete from ReferenceTest3 where shum = ?";
 		Object[] parameters = {shum};
 		if( MyDbHelper.executeNonQuery(sql, parameters) != 0)//执行影响行数不为0
 			return 1;
 		return 0;
 	}
 	
-	public int Add(int bjsID,int bookTypeID,String shum){
-		String sql = "insert into ReferenceTest values(?,?,?)";
+	public int Add(int bjsID,String bookTypeID,String shum){
+		String sql = "insert into ReferenceTest3 values(?,?,?)";
 		Object[] parameters = {bjsID,bookTypeID,shum};
 		if( MyDbHelper.executeNonQuery(sql, parameters) != 0)//执行影响行数不为0
 			return 1;
@@ -80,12 +80,12 @@ public class ReferenceDao {
 	}
 	
 	public int QueryCount(){
-		String sql = "select * from ReferenceTest";
+		String sql = "select * from ReferenceTest3";
 		return MyDbHelper.getCount(sql);
 	}
 	
 	public String QueryShumByID(int ID) {
-		String sql = "select shum from ReferenceTest where ID = ?";
+		String sql = "select shum from ReferenceTest3 where ID = ?";
 		Object[] parameters = {ID};
 		ResultSet rs = MyDbHelper.executeQuery(sql,parameters);
 		try {
@@ -100,7 +100,7 @@ public class ReferenceDao {
 	}
 	
 	public boolean shumIsExist(String shum){
-		String sql = "select * from Referencr where shum = ?";
+		String sql = "select * from ReferenceTest3 where shum = ?";
 		Object[] parameters = {shum};
 		if( MyDbHelper.getCount(sql, parameters) > 0)
 			return true;
