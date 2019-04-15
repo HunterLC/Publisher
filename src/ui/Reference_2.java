@@ -31,6 +31,7 @@ import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 
 import java.awt.Font;
+import java.awt.Rectangle;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.io.IOException;
@@ -85,7 +86,7 @@ public class Reference_2 extends JFrame {
 	 */
 	public Reference_2() {
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-		setBounds(100, 100, 877, 554);
+		setBounds(100, 100, 877, 663);
 		setTitle("【基本信息：引用类型二】");
 		setVisible(true);
 		setLocationRelativeTo(null);
@@ -98,12 +99,12 @@ public class Reference_2 extends JFrame {
 		titledBorder = new TitledBorder(UIManager.getBorder("TitledBorder.border"), "共"+Reference2Dao.getInstance().QueryCount()+"项", TitledBorder.LEADING, TitledBorder.TOP, null, Color.RED);
 		titledBorder.setTitleFont(new Font("宋体", Font.PLAIN, 20));
 		listPanel.setBorder(titledBorder);
-		listPanel.setBounds(14, 0, 831, 280);
+		listPanel.setBounds(14, 0, 831, 393);
 		contentPane.add(listPanel);
 		listPanel.setLayout(null);
 		
 		scrollPane = new JScrollPane();
-		scrollPane.setBounds(14, 24, 803, 243);
+		scrollPane.setBounds(14, 24, 803, 356);
 		listPanel.add(scrollPane);
 		
 		//初始化表格
@@ -145,7 +146,7 @@ public class Reference_2 extends JFrame {
 		titledBorder1 = new TitledBorder(null, "新增", TitledBorder.LEADING, TitledBorder.TOP, null, Color.GRAY);
 		titledBorder1.setTitleFont(new Font("宋体", Font.PLAIN, 20));
 		settingPanel.setBorder(titledBorder1);
-		settingPanel.setBounds(14, 297, 831, 197);
+		settingPanel.setBounds(14, 406, 831, 197);
 		contentPane.add(settingPanel);
 		settingPanel.setLayout(null);
 		
@@ -315,6 +316,8 @@ public class Reference_2 extends JFrame {
 		for(int i =0;i<listTable.getRowCount();i++)
 			if(queryName.equals(listTable.getValueAt(i,2).toString())){
 				listTable.setRowSelectionInterval(i,i);//设置新添加用户行为选中样式；
+				Rectangle rect = listTable.getCellRect(i, 0, true);  	  
+				listTable.scrollRectToVisible(rect);
 				break;
 			}
 	}

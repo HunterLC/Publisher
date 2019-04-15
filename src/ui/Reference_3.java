@@ -32,6 +32,7 @@ import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 
 import java.awt.Font;
+import java.awt.Rectangle;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.io.IOException;
@@ -49,6 +50,7 @@ import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import javax.swing.JRadioButton;
 import javax.swing.JComboBox;
+import java.awt.SystemColor;
 
 public class Reference_3 extends JFrame {
 
@@ -86,7 +88,7 @@ public class Reference_3 extends JFrame {
 	 */
 	public Reference_3() {
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-		setBounds(100, 100, 877, 554);
+		setBounds(100, 100, 872, 638);
 		setTitle("【基本信息：引用类型三】");
 		setVisible(true);
 		setLocationRelativeTo(null);
@@ -99,12 +101,12 @@ public class Reference_3 extends JFrame {
 		titledBorder = new TitledBorder(UIManager.getBorder("TitledBorder.border"), "共"+Reference3Dao.getInstance().QueryCount()+"项", TitledBorder.LEADING, TitledBorder.TOP, null, Color.RED);
 		titledBorder.setTitleFont(new Font("宋体", Font.PLAIN, 20));
 		listPanel.setBorder(titledBorder);
-		listPanel.setBounds(14, 0, 831, 280);
+		listPanel.setBounds(14, 0, 831, 368);
 		contentPane.add(listPanel);
 		listPanel.setLayout(null);
 		
 		scrollPane = new JScrollPane();
-		scrollPane.setBounds(14, 24, 803, 243);
+		scrollPane.setBounds(14, 24, 803, 331);
 		listPanel.add(scrollPane);
 		
 		//初始化表格
@@ -146,7 +148,7 @@ public class Reference_3 extends JFrame {
 		titledBorder1 = new TitledBorder(null, "新增", TitledBorder.LEADING, TitledBorder.TOP, null, Color.GRAY);
 		titledBorder1.setTitleFont(new Font("宋体", Font.PLAIN, 20));
 		settingPanel.setBorder(titledBorder1);
-		settingPanel.setBounds(14, 297, 831, 197);
+		settingPanel.setBounds(14, 381, 831, 197);
 		contentPane.add(settingPanel);
 		settingPanel.setLayout(null);
 		
@@ -162,6 +164,8 @@ public class Reference_3 extends JFrame {
 		nameTextField.setColumns(10);
 		
 		saveButton = new JButton("保存");
+		saveButton.setForeground(Color.BLACK);
+		saveButton.setBackground(Color.WHITE);
 		saveButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				String shum= nameTextField.getText();
@@ -199,6 +203,8 @@ public class Reference_3 extends JFrame {
 		settingPanel.add(saveButton);
 		
 		deleteButton = new JButton("删除");
+		deleteButton.setForeground(Color.BLACK);
+		deleteButton.setBackground(Color.WHITE);
 		deleteButton.setEnabled(false);
 		deleteButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -224,6 +230,8 @@ public class Reference_3 extends JFrame {
 		settingPanel.add(deleteButton);
 		
 		resetButton = new JButton("复位");
+		resetButton.setForeground(Color.BLACK);
+		resetButton.setBackground(Color.WHITE);
 		resetButton.setEnabled(false);
 		resetButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -244,6 +252,8 @@ public class Reference_3 extends JFrame {
 		settingPanel.add(resetButton);
 		
 		closeButton = new JButton("关闭");
+		closeButton.setForeground(Color.BLACK);
+		closeButton.setBackground(Color.WHITE);
 		closeButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				dispose();
@@ -264,12 +274,16 @@ public class Reference_3 extends JFrame {
 		settingPanel.add(isUse);
 		
 		nameComboBox = new JComboBox();
+		nameComboBox.setForeground(Color.BLACK);
+		nameComboBox.setBackground(Color.WHITE);
 		nameComboBox.setModel(new DefaultComboBoxModel(QueryBjsName()));
 		nameComboBox.setFont(new Font("宋体", Font.PLAIN, 20));
 		nameComboBox.setBounds(117, 38, 292, 24);
 		settingPanel.add(nameComboBox);
 		
 		bookTypeComboBox = new JComboBox();
+		bookTypeComboBox.setForeground(Color.BLACK);
+		bookTypeComboBox.setBackground(Color.WHITE);
 		bookTypeComboBox.setModel(new DefaultComboBoxModel(QueryBookTypeName()));
 		bookTypeComboBox.setFont(new Font("宋体", Font.PLAIN, 20));
 		bookTypeComboBox.setBounds(117, 82, 292, 24);
@@ -316,6 +330,8 @@ public class Reference_3 extends JFrame {
 		for(int i =0;i<listTable.getRowCount();i++)
 			if(queryName.equals(listTable.getValueAt(i,2).toString())){
 				listTable.setRowSelectionInterval(i,i);//设置新添加用户行为选中样式；
+				Rectangle rect = listTable.getCellRect(i, 0, true);  	  
+				listTable.scrollRectToVisible(rect);
 				break;
 			}
 	}
