@@ -40,6 +40,28 @@ public class IdentifierDao {
 		return null;
 	}
 	
+	public List<Bjs_Identifier> QueryAllUsed() {
+		List<Bjs_Identifier> list = new ArrayList<Bjs_Identifier>();
+		String sql = "select * from bjs_Identifier where isUse=? order by Num";
+		Object[] parameters = {" «"};
+		ResultSet rs = MyDbHelper.executeQuery(sql,parameters);
+		try {
+			while(rs.next()) {
+				Bjs_Identifier item = new Bjs_Identifier();
+				item.setID(rs.getInt("ID"));
+				item.setNum(rs.getInt("Num"));
+				item.setBjsName(rs.getString("bjsName"));
+				item.setIsUse(rs.getString("isUse"));
+				list.add(item);
+			}
+			return list;
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return null;
+	}
+	
 	/**
 	 * ∞¥’’±‡º≠ “√˚≤È—Ø±‡º≠ “ID
 	 * @param name

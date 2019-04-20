@@ -324,7 +324,7 @@ public class Reference_2 extends JFrame {
 	
 	public Object[] QueryBjsName() {
 		List<String> result = new ArrayList<String>();
-		List<Bjs_Identifier> list=IdentifierDao.getInstance().QueryAll();
+		List<Bjs_Identifier> list=IdentifierDao.getInstance().QueryAllUsed();
 		for(Bjs_Identifier item:list) {
 			String name = item.getBjsName();
 			if(result == null)

@@ -177,7 +177,7 @@ public class Manage_Identifier extends JFrame {
 					if(CURRENTID !=0 ){  //当前选中了一项
 						//修改之后的排序号或编辑室已经存在
 						if(!isNumeric(num))//输入的排序号不为数字
-							JOptionPane.showMessageDialog(null,"输入的排序号不为数字","提示",JOptionPane.INFORMATION_MESSAGE);
+							JOptionPane.showMessageDialog(null,"排序号必须为正整数","提示",JOptionPane.INFORMATION_MESSAGE);
 						else if(Integer.valueOf(num)<=0)
 							JOptionPane.showMessageDialog(null,"排序号必须为正整数","提示",JOptionPane.INFORMATION_MESSAGE);
 						else if(IdentifierDao.getInstance().QueryNumByID(CURRENTID) != Integer.valueOf(num) && IdentifierDao.getInstance().numIsExist(Integer.valueOf(num)))
@@ -189,7 +189,7 @@ public class Manage_Identifier extends JFrame {
 					}
 					else if(CURRENTID ==0 ){  //添加编辑室
 						if(!isNumeric(num))//输入的排序号不为数字
-							JOptionPane.showMessageDialog(null,"输入的排序号不为数字","提示",JOptionPane.INFORMATION_MESSAGE);
+							JOptionPane.showMessageDialog(null,"排序号必须为正整数","提示",JOptionPane.INFORMATION_MESSAGE);
 						else if(Integer.valueOf(num)<=0)
 							JOptionPane.showMessageDialog(null,"排序号必须为正整数","提示",JOptionPane.INFORMATION_MESSAGE);
 						else if(IdentifierDao.getInstance().QueryNumByID(CURRENTID) != Integer.valueOf(num) && IdentifierDao.getInstance().numIsExist(Integer.valueOf(num)))
@@ -286,25 +286,26 @@ public class Manage_Identifier extends JFrame {
 		settingPanel.add(isUse);
 		
 		yesRadioButton = new JRadioButton("\u662F");
+		noRadioButton = new JRadioButton("\u5426");
 		yesRadioButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				if(yesRadioButton.isSelected())
-					yesRadioButton.setSelected(false);
+					noRadioButton.setSelected(false);
 				else
-					yesRadioButton.setSelected(true);
+					noRadioButton.setSelected(true);
 			}
 		});
 		yesRadioButton.setFont(new Font("宋体", Font.PLAIN, 20));
 		yesRadioButton.setBounds(116, 120, 65, 27);
 		settingPanel.add(yesRadioButton);
 		
-		noRadioButton = new JRadioButton("\u5426");
+		
 		noRadioButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				if(noRadioButton.isSelected())
-					noRadioButton.setSelected(false);
+					yesRadioButton.setSelected(false);
 				else
-					noRadioButton.setSelected(true);
+					yesRadioButton.setSelected(true);
 			}
 		});
 		noRadioButton.setFont(new Font("宋体", Font.PLAIN, 20));

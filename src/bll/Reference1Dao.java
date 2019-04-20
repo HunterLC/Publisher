@@ -15,7 +15,7 @@ public class Reference1Dao {
 	}
 	
 	/**
-	 * 查询方案一，能用的
+	 * 查询方案一
 	 * @return
 	 */
 	public List<Reference1> QueryAllByMethod1(){

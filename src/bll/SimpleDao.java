@@ -20,7 +20,7 @@ public class SimpleDao {
 	 */
 	public List<Bjs_Simple> QueryAll() {
 		List<Bjs_Simple> list = new ArrayList<Bjs_Simple>();
-		String sql = "select * from bjs_simple";
+		String sql = "select * from bjs_simple order by bjsName";
 		ResultSet rs = MyDbHelper.executeQuery(sql);
 		try {
 			while(rs.next()) {

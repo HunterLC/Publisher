@@ -175,7 +175,7 @@ public class Manage_Code extends JFrame {
 						if(CodeDao.getInstance().codeIsExist(code))
 							JOptionPane.showMessageDialog(null,"该编码号已经存在","提示",JOptionPane.INFORMATION_MESSAGE);
 						else if(CodeDao.getInstance().nameIsExist(bookType))
-							JOptionPane.showMessageDialog(null,"该编辑室名已经存在","提示",JOptionPane.INFORMATION_MESSAGE);
+							JOptionPane.showMessageDialog(null,"该图书类型名已经存在","提示",JOptionPane.INFORMATION_MESSAGE);
 						else {
 							CodeDao.getInstance().Add(code,bookType);
 							CURRENTID =CodeDao.getInstance().QueryIDByName(bookType);//更新当前id指针为新建用户的id

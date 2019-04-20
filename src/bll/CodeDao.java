@@ -20,7 +20,7 @@ public class CodeDao {
 	 */
 	public List<Bjs_Code> QueryAll() {
 		List<Bjs_Code> list = new ArrayList<Bjs_Code>();
-		String sql = "select * from bjs_Code";
+		String sql = "select * from bjs_Code order by Code";
 		ResultSet rs = MyDbHelper.executeQuery(sql);
 		try {
 			while(rs.next()) {
