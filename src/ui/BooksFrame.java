@@ -20,6 +20,7 @@ import javax.swing.table.JTableHeader;
 import javax.swing.table.TableColumn;
 
 import bll.ArticleTypeDao;
+import bll.BookDao;
 import bll.BooksDao;
 import bll.CodeDao;
 import bll.EditorsDao;
@@ -30,6 +31,7 @@ import bll.SizeDao;
 import model.ArticleType;
 import model.Bjs_Code;
 import model.Bjs_Identifier;
+import model.Book;
 import model.Books;
 import model.Editors;
 import model.Reference1;
@@ -63,7 +65,11 @@ import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 import java.awt.event.ActionEvent;
 
-public class Manage_Books extends JFrame {
+import javax.swing.JFrame;
+import javax.swing.JPanel;
+import javax.swing.border.EmptyBorder;
+
+public class BooksFrame extends JFrame {
 
 	private JPanel contentPane,BooksInfoPanel,SettingPanel,SortPanel,searchPanel;
 	private JScrollPane BooksInfoScrollPane;
@@ -95,7 +101,8 @@ public class Manage_Books extends JFrame {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					Manage_Books frame = new Manage_Books();
+					BooksFrame frame = new BooksFrame();
+					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
@@ -106,10 +113,10 @@ public class Manage_Books extends JFrame {
 	/**
 	 * Create the frame.
 	 */
-	public Manage_Books() {
+	public BooksFrame() {
 		setTitle("\u56FE\u4E66\u4FE1\u606F");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 919, 747);
+		setBounds(100, 100, 921, 747);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
@@ -127,12 +134,34 @@ public class Manage_Books extends JFrame {
 		searchPanel.setLayout(null);
 		
 		searchTextField = new JTextField();
+		searchTextField.setFont(new Font("宋体", Font.PLAIN, 20));
 		searchTextField.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				RefreshListPanel();
+				booksTable.clearSelection();
+				CURRENTID = 0; //当前用户id清零
+				bookNameTextField.setText("");
+				authorTextField.setText("");
+				bookNumberTextField.setText("");
+				priceTextField.setText("");
+				openComboBox.setSelectedIndex(0);
+				languageComboBox.setSelectedIndex(0);
+				bjsComboBox.setSelectedIndex(0);
+				editorComboBox.setSelectedIndex(0);
+				categoryComboBox.setSelectedIndex(0);
+				printNumberSpinner.setValue(0);
+				try {
+					timeSpinner.setValue(new SimpleDateFormat("yyyy-MM-dd").parse(new SimpleDateFormat("yyyy-MM-dd").format(new Date())));
+				} catch (ParseException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
+				deleteButton.setEnabled(false);
+				titledBorder1.setTitle("新增");
+				SettingPanel.repaint();
 			}
 		});
-		searchTextField.setBounds(47, 17, 258, 39);
+		searchTextField.setBounds(47, 26, 258, 30);
 		searchPanel.add(searchTextField);
 		searchTextField.setColumns(10);
 		
@@ -343,7 +372,6 @@ public class Manage_Books extends JFrame {
 		SettingPanel.add(languageLabel);
 		
 		bookNameTextField = new JTextField();
-		bookNameTextField.requestFocus();
 		bookNameTextField.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				authorTextField.requestFocus();
@@ -353,6 +381,7 @@ public class Manage_Books extends JFrame {
 		bookNameTextField.setBounds(64, 23, 345, 24);
 		SettingPanel.add(bookNameTextField);
 		bookNameTextField.setColumns(10);
+		bookNameTextField.requestFocus();
 		
 		bookNumberTextField = new JTextField();
 		bookNumberTextField.addActionListener(new ActionListener() {
@@ -494,7 +523,7 @@ public class Manage_Books extends JFrame {
 		
 		closeButton = new JButton("\u5173\u95ED");
 		closeButton.setFont(new Font("宋体", Font.PLAIN, 20));
-		closeButton.setBounds(641, 172, 99, 27);
+		closeButton.setBounds(750, 183, 115, 39);
 		SettingPanel.add(closeButton);
 		
 		saveButton = new JButton("\u4FDD\u5B58");
@@ -511,10 +540,11 @@ public class Manage_Books extends JFrame {
 			}
 		});
 		saveButton.setFont(new Font("宋体", Font.PLAIN, 20));
-		saveButton.setBounds(529, 172, 99, 27);
+		saveButton.setBounds(598, 183, 112, 39);
 		SettingPanel.add(saveButton);
 		
 		deleteButton = new JButton("\u5220\u9664");
+		deleteButton.setEnabled(false);
 		deleteButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				int selection = JOptionPane.showConfirmDialog(null,"确认删除"+BooksDao.getInstance().QueryBookNameByID(CURRENTID)+"？","删除",JOptionPane.OK_CANCEL_OPTION,JOptionPane.QUESTION_MESSAGE);
@@ -535,20 +565,28 @@ public class Manage_Books extends JFrame {
 					bjsComboBox.setSelectedIndex(0);
 					editorComboBox.setSelectedIndex(0);
 					categoryComboBox.setSelectedIndex(0);
+					printNumberSpinner.setValue(0);
+					try {
+						timeSpinner.setValue(new SimpleDateFormat("yyyy-MM-dd").parse(new SimpleDateFormat("yyyy-MM-dd").format(new Date())));
+					} catch (ParseException e1) {
+						// TODO Auto-generated catch block
+						e1.printStackTrace();
+					}
 					deleteButton.setEnabled(false);
-					saveButton.setEnabled(false);
 					titledBorder1.setTitle("新增");
 					SettingPanel.repaint();
 				}
 			}
 		});
 		deleteButton.setFont(new Font("宋体", Font.PLAIN, 20));
-		deleteButton.setBounds(423, 172, 92, 27);
+		deleteButton.setBounds(470, 183, 96, 39);
 		SettingPanel.add(deleteButton);
 		
 		resetButton = new JButton("\u6E05\u9664");
 		resetButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				titledBorder2.setTitle("新增");
+				SettingPanel.repaint();
 				searchTextField.setText("");
 				bookNumRadioButton.setSelected(true);
 				bookNameTextField.setText("");
@@ -560,14 +598,20 @@ public class Manage_Books extends JFrame {
 				bjsComboBox.setSelectedIndex(0);
 				editorComboBox.setSelectedIndex(0);
 				categoryComboBox.setSelectedIndex(0);
+				printNumberSpinner.setValue(0);
+				try {
+					timeSpinner.setValue(new SimpleDateFormat("yyyy-MM-dd").parse(new SimpleDateFormat("yyyy-MM-dd").format(new Date())));
+				} catch (ParseException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
 				deleteButton.setEnabled(false);
-				saveButton.setEnabled(false);
 				CURRENTID = 0;
 				RefreshListPanel(); //刷新编辑室列表
 			}
 		});
 		resetButton.setFont(new Font("宋体", Font.PLAIN, 20));
-		resetButton.setBounds(310, 172, 99, 27);
+		resetButton.setBounds(329, 183, 107, 39);
 		SettingPanel.add(resetButton);
 		
 		priceTextField = new JTextField();
@@ -593,7 +637,6 @@ public class Manage_Books extends JFrame {
 		categoryComboBox.setFont(new Font("宋体", Font.PLAIN, 20));
 		categoryComboBox.setBounds(583, 57, 282, 24);
 		SettingPanel.add(categoryComboBox);
-		
 	}
 	
 	/**
@@ -632,7 +675,7 @@ public class Manage_Books extends JFrame {
     	    }  
     	}
     	String searchText = searchTextField.getText();
-        List<Books> list=BooksDao.getInstance().QueryAll(searchText,QuerySortType(sortType));
+        List<Book> list=BookDao.getInstance().QueryAll(searchText,QuerySortType(sortType));
         titledBorder1.setTitle("共"+list.size()+"本");
         data=new Object[list.size()][head.length];
         for(int i=0;i<list.size();i++){
@@ -640,14 +683,14 @@ public class Manage_Books extends JFrame {
                 data[i][0]=list.get(i).getBookName();
                 data[i][1]=list.get(i).getAuthorName();
                 data[i][2]=list.get(i).getBookNumber();
-                data[i][3]=CodeDao.getInstance().QueryNameByID(list.get(i).getBookTypeID());
-                data[i][4]=SizeDao.getInstance().QueryNameByID(list.get(i).getSizeID());
+                data[i][3]=list.get(i).getBookType();
+                data[i][4]=list.get(i).getSize();
                 data[i][5]=list.get(i).getPrintNumber();
                 data[i][6]=list.get(i).getPrice();
                 data[i][7]=list.get(i).getPublishTime();
-                data[i][8]=ArticleTypeDao.getInstance().QueryNameByID(list.get(i).getArticleTypeID());
-                data[i][9]=IdentifierDao.getInstance().QueryNameByID(list.get(i).getBjsNameID());
-                data[i][10]=EditorsDao.getInstance().QueryNameByID(list.get(i).getBjsEditorNameID());
+                data[i][8]=list.get(i).getArticleType();
+                data[i][9]=list.get(i).getBjsName();
+                data[i][10]=list.get(i).getBjsEditorName();
             }
         }
         return data;
@@ -660,11 +703,11 @@ public class Manage_Books extends JFrame {
     	else if(sortType.equals("书名"))
     		type="bookName";
     	else if(sortType.equals("编辑室"))
-    		type="bjsNameID";
+    		type="bjsName";
     	else if(sortType.equals("出版时间"))
     		type="publishTime";
     	else if(sortType.equals("图书分类"))
-    		type="bookTypeID";
+    		type="bookType";
     	return type;
     }
 	public void RefreshListPanel() {
@@ -830,4 +873,5 @@ public class Manage_Books extends JFrame {
 		}
 		return result.toArray();
 	}
+
 }

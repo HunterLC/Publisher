@@ -19,9 +19,9 @@ public class MyDbHelper {
 		 Connection conn = null;
 		 try {
 			 //≤‚ ‘≈‰÷√◊ ‘¥Œª÷√
-			System.out.println(MyProperties.class.getResource("").getPath());
+			/*System.out.println(MyProperties.class.getResource("").getPath());
 			System.out.println(MyProperties.class.getResource("/").getPath());
-			System.out.println(MyProperties.class.getClassLoader().getResource("").getPath());
+			System.out.println(MyProperties.class.getClassLoader().getResource("").getPath());*/
 			String SQLSERVER_DRIVER=MyProperties.getInstance().getProperty("SQLSERVER_DRIVER");
 			String SQLSERVER_URL=MyProperties.getInstance().getProperty("SQLSERVER_URL");
 			String USER=MyProperties.getInstance().getProperty("USER");
