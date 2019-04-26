@@ -17,6 +17,8 @@ import javax.swing.table.DefaultTableModel;
 import javax.swing.table.JTableHeader;
 import javax.swing.table.TableColumn;
 
+import org.jb2011.lnf.beautyeye.BeautyEyeLNFHelper;
+
 import bll.Reference1Dao;
 import model.Reference1;
 
@@ -62,6 +64,18 @@ public class Manage_RK extends JFrame {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
+					try
+				    {		
+						BeautyEyeLNFHelper.frameBorderStyle = BeautyEyeLNFHelper.FrameBorderStyle.translucencySmallShadow;			
+						org.jb2011.lnf.beautyeye.BeautyEyeLNFHelper.launchBeautyEyeLNF();			
+						UIManager.put("RootPane.setupButtonVisible", false);
+				      //设置此开关量为false即表示关闭之，BeautyEye LNF中默认是true
+				        BeautyEyeLNFHelper.translucencyAtFrameInactive = false;
+				    }
+				    catch(Exception e)
+				    {
+				        //TODO exception
+				    }
 					Manage_RK frame = new Manage_RK();
 					frame.setVisible(true);
 				} catch (Exception e) {

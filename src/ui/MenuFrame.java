@@ -34,6 +34,9 @@ import javax.swing.tree.DefaultMutableTreeNode;
 import javax.swing.tree.DefaultTreeCellRenderer;
 import javax.swing.tree.DefaultTreeModel;
 import javax.swing.tree.TreePath;
+
+import org.jb2011.lnf.beautyeye.BeautyEyeLNFHelper;
+
 import javax.swing.UIManager;
 import javax.swing.JScrollPane;
 import javax.swing.JTree;
@@ -52,7 +55,18 @@ public class MenuFrame extends JFrame {
 	 * Create the frame.
 	 */
 	public MenuFrame(int userID) {
-		
+		try
+	    {		
+			BeautyEyeLNFHelper.frameBorderStyle = BeautyEyeLNFHelper.FrameBorderStyle.translucencySmallShadow;			
+			org.jb2011.lnf.beautyeye.BeautyEyeLNFHelper.launchBeautyEyeLNF();			
+			UIManager.put("RootPane.setupButtonVisible", false);
+	      //设置此开关量为false即表示关闭之，BeautyEye LNF中默认是true
+	        BeautyEyeLNFHelper.translucencyAtFrameInactive = false;
+	    }
+	    catch(Exception e)
+	    {
+	        //TODO exception
+	    }
 		setResizable(false);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 1022, 628);
@@ -253,6 +267,7 @@ public class MenuFrame extends JFrame {
 			case "W_xxmyy":new Reference_1();break;
 			case "W_zjyy":new Reference_2();break;
 			case "W_bmyy":new Reference_3();break;
+			case "W_tsgl":new BooksFrame();break;
 		}
 	}
 }

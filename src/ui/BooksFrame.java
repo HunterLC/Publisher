@@ -19,6 +19,8 @@ import javax.swing.table.DefaultTableModel;
 import javax.swing.table.JTableHeader;
 import javax.swing.table.TableColumn;
 
+import org.jb2011.lnf.beautyeye.BeautyEyeLNFHelper;
+
 import bll.ArticleTypeDao;
 import bll.BookDao;
 import bll.BooksDao;
@@ -101,8 +103,20 @@ public class BooksFrame extends JFrame {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
+					try
+				    {		
+						BeautyEyeLNFHelper.frameBorderStyle = BeautyEyeLNFHelper.FrameBorderStyle.translucencySmallShadow;			
+						org.jb2011.lnf.beautyeye.BeautyEyeLNFHelper.launchBeautyEyeLNF();			
+						UIManager.put("RootPane.setupButtonVisible", false);
+				      //设置此开关量为false即表示关闭之，BeautyEye LNF中默认是true
+				        BeautyEyeLNFHelper.translucencyAtFrameInactive = false;
+				    }
+				    catch(Exception e)
+				    {
+				        //TODO exception
+				    }
 					BooksFrame frame = new BooksFrame();
-					frame.setVisible(true);
+					
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
@@ -116,7 +130,7 @@ public class BooksFrame extends JFrame {
 	public BooksFrame() {
 		setTitle("\u56FE\u4E66\u4FE1\u606F");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 921, 747);
+		setBounds(100, 100, 920, 741);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
@@ -157,7 +171,7 @@ public class BooksFrame extends JFrame {
 					e1.printStackTrace();
 				}
 				deleteButton.setEnabled(false);
-				titledBorder1.setTitle("新增");
+				titledBorder2.setTitle("新增");
 				SettingPanel.repaint();
 			}
 		});
@@ -358,17 +372,17 @@ public class BooksFrame extends JFrame {
 		
 		bookNumberLabel = new JLabel("\u4E66\u53F7");
 		bookNumberLabel.setFont(new Font("宋体", Font.PLAIN, 20));
-		bookNumberLabel.setBounds(14, 55, 72, 18);
+		bookNumberLabel.setBounds(14, 60, 72, 18);
 		SettingPanel.add(bookNumberLabel);
 		
 		openLabel = new JLabel("\u5F00\u672C*");
 		openLabel.setFont(new Font("宋体", Font.PLAIN, 20));
-		openLabel.setBounds(14, 90, 72, 18);
+		openLabel.setBounds(14, 95, 72, 18);
 		SettingPanel.add(openLabel);
 		
 		languageLabel = new JLabel("\u6587\u79CD");
 		languageLabel.setFont(new Font("宋体", Font.PLAIN, 20));
-		languageLabel.setBounds(14, 128, 72, 18);
+		languageLabel.setBounds(14, 126, 72, 18);
 		SettingPanel.add(languageLabel);
 		
 		bookNameTextField = new JTextField();
@@ -378,7 +392,7 @@ public class BooksFrame extends JFrame {
 			}
 		});
 		bookNameTextField.setFont(new Font("宋体", Font.PLAIN, 20));
-		bookNameTextField.setBounds(64, 23, 345, 24);
+		bookNameTextField.setBounds(64, 20, 345, 26);
 		SettingPanel.add(bookNameTextField);
 		bookNameTextField.setColumns(10);
 		bookNameTextField.requestFocus();
@@ -390,7 +404,7 @@ public class BooksFrame extends JFrame {
 			}
 		});
 		bookNumberTextField.setFont(new Font("宋体", Font.PLAIN, 20));
-		bookNumberTextField.setBounds(64, 55, 345, 24);
+		bookNumberTextField.setBounds(64, 57, 345, 24);
 		SettingPanel.add(bookNumberTextField);
 		bookNumberTextField.setColumns(10);
 		
@@ -406,7 +420,7 @@ public class BooksFrame extends JFrame {
 		});
 
 		openComboBox.setFont(new Font("宋体", Font.PLAIN, 20));
-		openComboBox.setBounds(64, 86, 112, 24);
+		openComboBox.setBounds(64, 92, 112, 24);
 		SettingPanel.add(openComboBox);
 		
 		languageComboBox = new JComboBox();
@@ -421,17 +435,17 @@ public class BooksFrame extends JFrame {
 		
 
 		languageComboBox.setFont(new Font("宋体", Font.PLAIN, 20));
-		languageComboBox.setBounds(64, 127, 112, 24);
+		languageComboBox.setBounds(64, 126, 112, 24);
 		SettingPanel.add(languageComboBox);
 		
 		printNumberLabel = new JLabel("\u5370  \u6570");
 		printNumberLabel.setFont(new Font("宋体", Font.PLAIN, 20));
-		printNumberLabel.setBounds(180, 92, 72, 18);
+		printNumberLabel.setBounds(180, 95, 72, 18);
 		SettingPanel.add(printNumberLabel);
 		
 		bjsLabel = new JLabel("\u7F16\u8F91\u5BA4");
 		bjsLabel.setFont(new Font("宋体", Font.PLAIN, 20));
-		bjsLabel.setBounds(180, 128, 72, 18);
+		bjsLabel.setBounds(180, 129, 72, 18);
 		SettingPanel.add(bjsLabel);
 		
 		bjsComboBox = new JComboBox();
@@ -445,7 +459,7 @@ public class BooksFrame extends JFrame {
 		});
 
 		bjsComboBox.setFont(new Font("宋体", Font.PLAIN, 20));
-		bjsComboBox.setBounds(247, 127, 162, 24);
+		bjsComboBox.setBounds(247, 126, 162, 24);
 		SettingPanel.add(bjsComboBox);
 		
 		printNumberSpinner = new JSpinner();
@@ -457,7 +471,7 @@ public class BooksFrame extends JFrame {
 			}
 		});
 		printNumberSpinner.setFont(new Font("宋体", Font.PLAIN, 20));
-		printNumberSpinner.setBounds(245, 89, 164, 24);
+		printNumberSpinner.setBounds(245, 89, 164, 30);
 		SettingPanel.add(printNumberSpinner);
 		
 		authorTextField = new JTextField();
@@ -468,7 +482,7 @@ public class BooksFrame extends JFrame {
 		});
 		authorTextField.setFont(new Font("宋体", Font.PLAIN, 20));
 		authorTextField.setColumns(10);
-		authorTextField.setBounds(583, 24, 282, 24);
+		authorTextField.setBounds(583, 20, 282, 26);
 		SettingPanel.add(authorTextField);
 		
 		authorLabel = new JLabel("\u4F5C    \u8005");
@@ -488,7 +502,7 @@ public class BooksFrame extends JFrame {
 		
 		timeLabel = new JLabel("\u51FA\u7248\u65F6\u95F4");
 		timeLabel.setFont(new Font("宋体", Font.PLAIN, 20));
-		timeLabel.setBounds(664, 93, 92, 18);
+		timeLabel.setBounds(654, 95, 92, 18);
 		SettingPanel.add(timeLabel);
 		
 		// 获得时间日期模型
@@ -507,7 +521,7 @@ public class BooksFrame extends JFrame {
 			}
 		});
 		timeSpinner.setFont(new Font("宋体", Font.PLAIN, 20));
-		timeSpinner.setBounds(746, 90, 119, 24);
+		timeSpinner.setBounds(735, 90, 130, 30);
 		SettingPanel.add(timeSpinner);
 		
 		editorLabel = new JLabel("\u8D23\u4EFB\u7F16\u8F91");
@@ -573,7 +587,7 @@ public class BooksFrame extends JFrame {
 						e1.printStackTrace();
 					}
 					deleteButton.setEnabled(false);
-					titledBorder1.setTitle("新增");
+					titledBorder2.setTitle("新增");
 					SettingPanel.repaint();
 				}
 			}
@@ -803,7 +817,7 @@ public class BooksFrame extends JFrame {
 					CURRENTID =BooksDao.getInstance().QueryIDByBookName(bookName);//更新当前id指针为新建用户的id
 					deleteButton.setEnabled(true);
 					resetButton.setEnabled(true);
-					titledBorder1.setTitle("修改");
+					titledBorder2.setTitle("修改");
 					SettingPanel.repaint();
 				}
 			}

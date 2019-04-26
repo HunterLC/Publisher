@@ -13,6 +13,8 @@ import javax.swing.border.TitledBorder;
 import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
 
+import org.jb2011.lnf.beautyeye.BeautyEyeLNFHelper;
+
 import bll.IdentifierDao;
 import bll.NumDao;
 import bll.SimpleDao;
@@ -59,26 +61,23 @@ public class Manage_Identifier extends JFrame {
 	private JRadioButton yesRadioButton,noRadioButton;
 	private ButtonGroup selectedGroup;
 
-	/**
-	 * Launch the application.
-	 */
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					Manage_Identifier frame = new Manage_Identifier();
-					frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}
-
+	
 	/**
 	 * Create the frame.
 	 */
 	public Manage_Identifier() {
+		try
+	    {		
+			BeautyEyeLNFHelper.frameBorderStyle = BeautyEyeLNFHelper.FrameBorderStyle.translucencySmallShadow;			
+			org.jb2011.lnf.beautyeye.BeautyEyeLNFHelper.launchBeautyEyeLNF();			
+			UIManager.put("RootPane.setupButtonVisible", false);
+	      //设置此开关量为false即表示关闭之，BeautyEye LNF中默认是true
+	        BeautyEyeLNFHelper.translucencyAtFrameInactive = false;
+	    }
+	    catch(Exception e)
+	    {
+	        //TODO exception
+	    }
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		setBounds(100, 100, 697, 554);
 		setTitle("【基本信息：编辑室带有标识类型】");
