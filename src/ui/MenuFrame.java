@@ -69,7 +69,7 @@ public class MenuFrame extends JFrame {
 	    }
 		setResizable(false);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 1022, 628);
+		setBounds(100, 100, 800, 600);
 		setVisible(true);
 		setLocationRelativeTo(null);
 		contentPane = new JPanel();
@@ -99,7 +99,7 @@ public class MenuFrame extends JFrame {
 			}
 		});
 		loginAgainLabel.setForeground(Color.BLUE);
-		loginAgainLabel.setBounds(471, 556, 123, 24);
+		loginAgainLabel.setBounds(376, 528, 123, 24);
 		contentPane.add(loginAgainLabel);
 		
 		closeLabel = new JLabel("[关闭]");
@@ -111,18 +111,18 @@ public class MenuFrame extends JFrame {
 			}
 		});
 		closeLabel.setForeground(Color.BLUE);
-		closeLabel.setBounds(725, 556, 72, 24);
+		closeLabel.setBounds(619, 528, 72, 24);
 		contentPane.add(closeLabel);
 		
 		menuTreePanel = new JPanel();
 		menuTreePanel.setFont(new Font("宋体", Font.PLAIN, 20));
 		menuTreePanel.setBorder(new TitledBorder(UIManager.getBorder("TitledBorder.border"), "菜单", TitledBorder.CENTER, TitledBorder.TOP, null, new Color(210, 105, 30)));
-		menuTreePanel.setBounds(10, 44, 239, 536);
+		menuTreePanel.setBounds(10, 44, 239, 509);
 		contentPane.add(menuTreePanel);
 		menuTreePanel.setLayout(null);
 		
 		menuTreeScrollPane = new JScrollPane();
-		menuTreeScrollPane.setBounds(14, 25, 211, 498);
+		menuTreeScrollPane.setBounds(14, 26, 211, 470);
 		menuTreePanel.add(menuTreeScrollPane);
 		
 		menuTree = new JTree(QueryRoot(userID));// 利用根节点直接创建树
@@ -149,7 +149,12 @@ public class MenuFrame extends JFrame {
 						.getLastPathComponent();// 获得当前被选择的节点
 				if(node.isLeaf()){ //如果是叶子节点
 					Object nodeInfo = node.getUserObject();
-					OpenFrame(RightsDao.getInstance().QueryW_Name(nodeInfo.toString()));
+					try {
+						OpenFrame(RightsDao.getInstance().QueryW_Name(nodeInfo.toString()));
+					} catch (Exception e1) {
+						// TODO Auto-generated catch block
+						e1.printStackTrace();
+					}
 				}
 				
 			}
@@ -176,7 +181,7 @@ public class MenuFrame extends JFrame {
 		ImageIcon img = new ImageIcon("image/menu.png");
 		pictureLabel = new JLabel();
 		pictureLabel.setIcon(img);
-		pictureLabel.setBounds(263, 44, 728, 509);
+		pictureLabel.setBounds(263, 44, 517, 461);
 		contentPane.add(pictureLabel);
 		Thread t1= new Thread(){
             public void run(){
@@ -247,8 +252,9 @@ public class MenuFrame extends JFrame {
 	/**
 	 * 打开相应的窗口
 	 * @param name
+	 * @throws Exception 
 	 */
-	public void OpenFrame(String name){
+	public void OpenFrame(String name) throws Exception{
 		switch(name){
 			case "W_xtgl":new W_xtgl();break;
 			case "W_bpcx":new W_bpcx();break;
@@ -268,6 +274,10 @@ public class MenuFrame extends JFrame {
 			case "W_zjyy":new Reference_2();break;
 			case "W_bmyy":new Reference_3();break;
 			case "W_tsgl":new BooksFrame();break;
+			case "W_zhcx":new Search_1();break;
+			case "W_mhcx":new Search_2();break;
+			case "W_wncx":new Search_3();break;
+			
 		}
 	}
 }

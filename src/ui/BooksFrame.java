@@ -129,8 +129,8 @@ public class BooksFrame extends JFrame {
 	 */
 	public BooksFrame() {
 		setTitle("\u56FE\u4E66\u4FE1\u606F");
-		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 920, 741);
+		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+		setBounds(100, 100, 800, 600);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
@@ -143,12 +143,12 @@ public class BooksFrame extends JFrame {
 		titledBorder3 = new TitledBorder(null, "\u68C0\u7D22", TitledBorder.LEADING, TitledBorder.TOP, null, new Color(51, 102, 153));
 		titledBorder3.setTitleFont(new Font("宋体", Font.PLAIN, 20));
 		searchPanel.setBorder(titledBorder3);
-		searchPanel.setBounds(14, 0, 323, 69);
+		searchPanel.setBounds(14, 0, 197, 57);
 		contentPane.add(searchPanel);
 		searchPanel.setLayout(null);
 		
 		searchTextField = new JTextField();
-		searchTextField.setFont(new Font("宋体", Font.PLAIN, 20));
+		searchTextField.setFont(new Font("宋体", Font.PLAIN, 16));
 		searchTextField.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				RefreshListPanel();
@@ -175,7 +175,7 @@ public class BooksFrame extends JFrame {
 				SettingPanel.repaint();
 			}
 		});
-		searchTextField.setBounds(47, 26, 258, 30);
+		searchTextField.setBounds(48, 19, 135, 25);
 		searchPanel.add(searchTextField);
 		searchTextField.setColumns(10);
 		
@@ -183,59 +183,59 @@ public class BooksFrame extends JFrame {
 		titledBorder4 = new TitledBorder(UIManager.getBorder("TitledBorder.border"), "\u6392\u5E8F\u65B9\u5F0F", TitledBorder.LEADING, TitledBorder.TOP, null, new Color(51, 102, 153));
 		titledBorder4.setTitleFont(new Font("宋体", Font.PLAIN, 20));
 		SortPanel.setBorder(titledBorder4);
-		SortPanel.setBounds(351, 0, 542, 69);
+		SortPanel.setBounds(226, 0, 542, 57);
 		contentPane.add(SortPanel);
 		SortPanel.setLayout(null);
 		
 		bookNumRadioButton = new JRadioButton("\u4E66\u53F7");
-		bookNumRadioButton.setFont(new Font("宋体", Font.PLAIN, 20));
+		bookNumRadioButton.setFont(new Font("宋体", Font.PLAIN, 16));
 		bookNumRadioButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				RefreshListPanel();
 			}
 		});
 		bookNumRadioButton.setSelected(true);
-		bookNumRadioButton.setBounds(21, 22, 77, 38);
+		bookNumRadioButton.setBounds(21, 22, 77, 26);
 		SortPanel.add(bookNumRadioButton);
 		
 		bookNameRadioButton = new JRadioButton("\u4E66\u540D");
-		bookNameRadioButton.setFont(new Font("宋体", Font.PLAIN, 20));
+		bookNameRadioButton.setFont(new Font("宋体", Font.PLAIN, 16));
 		bookNameRadioButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				RefreshListPanel();
 			}
 		});
-		bookNameRadioButton.setBounds(104, 22, 77, 38);
+		bookNameRadioButton.setBounds(104, 22, 77, 26);
 		SortPanel.add(bookNameRadioButton);
 		
 		bjsRadioButton = new JRadioButton("\u7F16\u8F91\u5BA4");
-		bjsRadioButton.setFont(new Font("宋体", Font.PLAIN, 20));
+		bjsRadioButton.setFont(new Font("宋体", Font.PLAIN, 16));
 		bjsRadioButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				RefreshListPanel();
 			}
 		});
-		bjsRadioButton.setBounds(187, 22, 101, 38);
+		bjsRadioButton.setBounds(187, 22, 101, 26);
 		SortPanel.add(bjsRadioButton);
 		
 		publishRadioButton = new JRadioButton("\u51FA\u7248\u65F6\u95F4");
-		publishRadioButton.setFont(new Font("宋体", Font.PLAIN, 20));
+		publishRadioButton.setFont(new Font("宋体", Font.PLAIN, 16));
 		publishRadioButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				RefreshListPanel();
 			}
 		});
-		publishRadioButton.setBounds(294, 22, 116, 38);
+		publishRadioButton.setBounds(294, 22, 116, 26);
 		SortPanel.add(publishRadioButton);
 		
 		bookTypeRadioButton = new JRadioButton("\u56FE\u4E66\u5206\u7C7B");
-		bookTypeRadioButton.setFont(new Font("宋体", Font.PLAIN, 20));
+		bookTypeRadioButton.setFont(new Font("宋体", Font.PLAIN, 16));
 		bookTypeRadioButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				RefreshListPanel();
 			}
 		});
-		bookTypeRadioButton.setBounds(416, 22, 116, 38);
+		bookTypeRadioButton.setBounds(416, 22, 116, 26);
 		SortPanel.add(bookTypeRadioButton);
 		
 		selectedGroup = new ButtonGroup();//单选组
@@ -249,12 +249,12 @@ public class BooksFrame extends JFrame {
 		titledBorder1 = new TitledBorder(null, "共XXX本", TitledBorder.LEADING, TitledBorder.TOP, null, new Color(51, 102, 153));
 		titledBorder1.setTitleFont(new Font("宋体", Font.PLAIN, 20));
 		BooksInfoPanel.setBorder(titledBorder1);
-		BooksInfoPanel.setBounds(14, 70, 879, 368);
+		BooksInfoPanel.setBounds(14, 57, 754, 283);
 		contentPane.add(BooksInfoPanel);
 		BooksInfoPanel.setLayout(null);
 		
 		BooksInfoScrollPane = new JScrollPane();
-		BooksInfoScrollPane.setBounds(14, 26, 848, 326);
+		BooksInfoScrollPane.setBounds(14, 26, 726, 246);
 		BooksInfoPanel.add(BooksInfoScrollPane);
 		
 		//初始化表格
@@ -268,7 +268,7 @@ public class BooksFrame extends JFrame {
 			return false;
 			}
 		};
-		booksTable.setFont(new Font("宋体", Font.BOLD, 20));
+		booksTable.setFont(new Font("宋体", Font.BOLD, 16));
 		booksTable.addMouseListener(new MouseAdapter() {   //用户名表格点击事件
 			@SuppressWarnings("deprecation")
 			@Override
@@ -361,27 +361,27 @@ public class BooksFrame extends JFrame {
 		titledBorder2 = new TitledBorder(UIManager.getBorder("TitledBorder.border"), "新增", TitledBorder.LEADING, TitledBorder.TOP, null, new Color(51, 102, 153));
 		titledBorder2.setTitleFont(new Font("宋体", Font.PLAIN, 20));
 		SettingPanel.setBorder(titledBorder2);
-		SettingPanel.setBounds(14, 439, 879, 248);
+		SettingPanel.setBounds(14, 338, 754, 215);
 		contentPane.add(SettingPanel);
 		SettingPanel.setLayout(null);
 		
 		bookNameLabel = new JLabel("\u4E66\u540D");
-		bookNameLabel.setFont(new Font("宋体", Font.PLAIN, 20));
+		bookNameLabel.setFont(new Font("宋体", Font.PLAIN, 16));
 		bookNameLabel.setBounds(14, 24, 72, 18);
 		SettingPanel.add(bookNameLabel);
 		
 		bookNumberLabel = new JLabel("\u4E66\u53F7");
-		bookNumberLabel.setFont(new Font("宋体", Font.PLAIN, 20));
+		bookNumberLabel.setFont(new Font("宋体", Font.PLAIN, 16));
 		bookNumberLabel.setBounds(14, 60, 72, 18);
 		SettingPanel.add(bookNumberLabel);
 		
 		openLabel = new JLabel("\u5F00\u672C*");
-		openLabel.setFont(new Font("宋体", Font.PLAIN, 20));
+		openLabel.setFont(new Font("宋体", Font.PLAIN, 16));
 		openLabel.setBounds(14, 95, 72, 18);
 		SettingPanel.add(openLabel);
 		
 		languageLabel = new JLabel("\u6587\u79CD");
-		languageLabel.setFont(new Font("宋体", Font.PLAIN, 20));
+		languageLabel.setFont(new Font("宋体", Font.PLAIN, 16));
 		languageLabel.setBounds(14, 126, 72, 18);
 		SettingPanel.add(languageLabel);
 		
@@ -391,8 +391,8 @@ public class BooksFrame extends JFrame {
 				authorTextField.requestFocus();
 			}
 		});
-		bookNameTextField.setFont(new Font("宋体", Font.PLAIN, 20));
-		bookNameTextField.setBounds(64, 20, 345, 26);
+		bookNameTextField.setFont(new Font("宋体", Font.PLAIN, 16));
+		bookNameTextField.setBounds(64, 20, 274, 28);
 		SettingPanel.add(bookNameTextField);
 		bookNameTextField.setColumns(10);
 		bookNameTextField.requestFocus();
@@ -403,8 +403,8 @@ public class BooksFrame extends JFrame {
 				categoryComboBox.requestFocus();
 			}
 		});
-		bookNumberTextField.setFont(new Font("宋体", Font.PLAIN, 20));
-		bookNumberTextField.setBounds(64, 57, 345, 24);
+		bookNumberTextField.setFont(new Font("宋体", Font.PLAIN, 16));
+		bookNumberTextField.setBounds(64, 57, 274, 24);
 		SettingPanel.add(bookNumberTextField);
 		bookNumberTextField.setColumns(10);
 		
@@ -419,8 +419,8 @@ public class BooksFrame extends JFrame {
 			}
 		});
 
-		openComboBox.setFont(new Font("宋体", Font.PLAIN, 20));
-		openComboBox.setBounds(64, 92, 112, 24);
+		openComboBox.setFont(new Font("宋体", Font.PLAIN, 16));
+		openComboBox.setBounds(64, 92, 72, 24);
 		SettingPanel.add(openComboBox);
 		
 		languageComboBox = new JComboBox();
@@ -434,18 +434,18 @@ public class BooksFrame extends JFrame {
 		});
 		
 
-		languageComboBox.setFont(new Font("宋体", Font.PLAIN, 20));
-		languageComboBox.setBounds(64, 126, 112, 24);
+		languageComboBox.setFont(new Font("宋体", Font.PLAIN, 16));
+		languageComboBox.setBounds(64, 126, 72, 24);
 		SettingPanel.add(languageComboBox);
 		
 		printNumberLabel = new JLabel("\u5370  \u6570");
-		printNumberLabel.setFont(new Font("宋体", Font.PLAIN, 20));
-		printNumberLabel.setBounds(180, 95, 72, 18);
+		printNumberLabel.setFont(new Font("宋体", Font.PLAIN, 16));
+		printNumberLabel.setBounds(150, 95, 72, 18);
 		SettingPanel.add(printNumberLabel);
 		
 		bjsLabel = new JLabel("\u7F16\u8F91\u5BA4");
-		bjsLabel.setFont(new Font("宋体", Font.PLAIN, 20));
-		bjsLabel.setBounds(180, 129, 72, 18);
+		bjsLabel.setFont(new Font("宋体", Font.PLAIN, 16));
+		bjsLabel.setBounds(150, 126, 72, 18);
 		SettingPanel.add(bjsLabel);
 		
 		bjsComboBox = new JComboBox();
@@ -458,8 +458,8 @@ public class BooksFrame extends JFrame {
 			}
 		});
 
-		bjsComboBox.setFont(new Font("宋体", Font.PLAIN, 20));
-		bjsComboBox.setBounds(247, 126, 162, 24);
+		bjsComboBox.setFont(new Font("宋体", Font.PLAIN, 16));
+		bjsComboBox.setBounds(201, 126, 137, 24);
 		SettingPanel.add(bjsComboBox);
 		
 		printNumberSpinner = new JSpinner();
@@ -470,8 +470,8 @@ public class BooksFrame extends JFrame {
 					priceTextField.requestFocus();
 			}
 		});
-		printNumberSpinner.setFont(new Font("宋体", Font.PLAIN, 20));
-		printNumberSpinner.setBounds(245, 89, 164, 30);
+		printNumberSpinner.setFont(new Font("宋体", Font.PLAIN, 16));
+		printNumberSpinner.setBounds(201, 88, 137, 30);
 		SettingPanel.add(printNumberSpinner);
 		
 		authorTextField = new JTextField();
@@ -480,29 +480,29 @@ public class BooksFrame extends JFrame {
 				bookNumberTextField.requestFocus();
 			}
 		});
-		authorTextField.setFont(new Font("宋体", Font.PLAIN, 20));
+		authorTextField.setFont(new Font("宋体", Font.PLAIN, 16));
 		authorTextField.setColumns(10);
-		authorTextField.setBounds(583, 20, 282, 26);
+		authorTextField.setBounds(452, 20, 274, 28);
 		SettingPanel.add(authorTextField);
 		
 		authorLabel = new JLabel("\u4F5C    \u8005");
-		authorLabel.setFont(new Font("宋体", Font.PLAIN, 20));
-		authorLabel.setBounds(489, 27, 96, 18);
+		authorLabel.setFont(new Font("宋体", Font.PLAIN, 16));
+		authorLabel.setBounds(375, 26, 96, 18);
 		SettingPanel.add(authorLabel);
 		
 		categoryLabel  = new JLabel("\u56FE\u4E66\u5206\u7C7B");
-		categoryLabel.setFont(new Font("宋体", Font.PLAIN, 20));
-		categoryLabel.setBounds(489, 58, 92, 18);
+		categoryLabel.setFont(new Font("宋体", Font.PLAIN, 16));
+		categoryLabel.setBounds(375, 63, 92, 18);
 		SettingPanel.add(categoryLabel);
 		
 		priceLabel = new JLabel("\u5B9A    \u4EF7");
-		priceLabel.setFont(new Font("宋体", Font.PLAIN, 20));
-		priceLabel.setBounds(489, 94, 96, 18);
+		priceLabel.setFont(new Font("宋体", Font.PLAIN, 16));
+		priceLabel.setBounds(375, 95, 96, 18);
 		SettingPanel.add(priceLabel);
 		
 		timeLabel = new JLabel("\u51FA\u7248\u65F6\u95F4");
-		timeLabel.setFont(new Font("宋体", Font.PLAIN, 20));
-		timeLabel.setBounds(654, 95, 92, 18);
+		timeLabel.setFont(new Font("宋体", Font.PLAIN, 16));
+		timeLabel.setBounds(538, 95, 92, 18);
 		SettingPanel.add(timeLabel);
 		
 		// 获得时间日期模型
@@ -520,24 +520,36 @@ public class BooksFrame extends JFrame {
 					languageComboBox.requestFocus();
 			}
 		});
-		timeSpinner.setFont(new Font("宋体", Font.PLAIN, 20));
-		timeSpinner.setBounds(735, 90, 130, 30);
+		timeSpinner.setFont(new Font("宋体", Font.PLAIN, 16));
+		timeSpinner.setBounds(620, 90, 106, 30);
 		SettingPanel.add(timeSpinner);
 		
 		editorLabel = new JLabel("\u8D23\u4EFB\u7F16\u8F91");
-		editorLabel.setFont(new Font("宋体", Font.PLAIN, 20));
-		editorLabel.setBounds(489, 132, 96, 18);
+		editorLabel.setFont(new Font("宋体", Font.PLAIN, 16));
+		editorLabel.setBounds(375, 126, 96, 18);
 		SettingPanel.add(editorLabel);
 		
 		editorComboBox = new JComboBox();
 		editorComboBox.setModel(new DefaultComboBoxModel(QueryEditorName()));
-		editorComboBox.setFont(new Font("宋体", Font.PLAIN, 20));
-		editorComboBox.setBounds(583, 128, 282, 24);
+		editorComboBox.setFont(new Font("宋体", Font.PLAIN, 16));
+		editorComboBox.setBounds(452, 123, 274, 24);
 		SettingPanel.add(editorComboBox);
 		
 		closeButton = new JButton("\u5173\u95ED");
+		closeButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				if(!bookNameTextField.getText().equals("")||!bookNumberTextField.getText().equals("")||!authorTextField.getText().equals("")||!priceTextField.getText().equals("")) {
+					int selection = JOptionPane.showConfirmDialog(null,"数据区还有未保存数据，是否退出并丢弃？","注意",JOptionPane.OK_CANCEL_OPTION,JOptionPane.WARNING_MESSAGE);
+					if( selection == JOptionPane.OK_OPTION ){
+						dispose();
+					}
+				}
+				else
+					dispose();
+			}
+		});
 		closeButton.setFont(new Font("宋体", Font.PLAIN, 20));
-		closeButton.setBounds(750, 183, 115, 39);
+		closeButton.setBounds(648, 170, 78, 32);
 		SettingPanel.add(closeButton);
 		
 		saveButton = new JButton("\u4FDD\u5B58");
@@ -554,7 +566,7 @@ public class BooksFrame extends JFrame {
 			}
 		});
 		saveButton.setFont(new Font("宋体", Font.PLAIN, 20));
-		saveButton.setBounds(598, 183, 112, 39);
+		saveButton.setBounds(532, 170, 78, 32);
 		SettingPanel.add(saveButton);
 		
 		deleteButton = new JButton("\u5220\u9664");
@@ -593,7 +605,7 @@ public class BooksFrame extends JFrame {
 			}
 		});
 		deleteButton.setFont(new Font("宋体", Font.PLAIN, 20));
-		deleteButton.setBounds(470, 183, 96, 39);
+		deleteButton.setBounds(430, 170, 72, 32);
 		SettingPanel.add(deleteButton);
 		
 		resetButton = new JButton("\u6E05\u9664");
@@ -625,7 +637,7 @@ public class BooksFrame extends JFrame {
 			}
 		});
 		resetButton.setFont(new Font("宋体", Font.PLAIN, 20));
-		resetButton.setBounds(329, 183, 107, 39);
+		resetButton.setBounds(317, 170, 78, 32);
 		SettingPanel.add(resetButton);
 		
 		priceTextField = new JTextField();
@@ -634,8 +646,8 @@ public class BooksFrame extends JFrame {
 				timeSpinner.requestFocus();
 			}
 		});
-		priceTextField.setFont(new Font("宋体", Font.PLAIN, 20));
-		priceTextField.setBounds(583, 92, 57, 24);
+		priceTextField.setFont(new Font("宋体", Font.PLAIN, 16));
+		priceTextField.setBounds(452, 91, 78, 25);
 		SettingPanel.add(priceTextField);
 		priceTextField.setColumns(10);
 		
@@ -648,8 +660,8 @@ public class BooksFrame extends JFrame {
 					openComboBox.requestFocus();
 			}
 		});
-		categoryComboBox.setFont(new Font("宋体", Font.PLAIN, 20));
-		categoryComboBox.setBounds(583, 57, 282, 24);
+		categoryComboBox.setFont(new Font("宋体", Font.PLAIN, 16));
+		categoryComboBox.setBounds(452, 59, 274, 24);
 		SettingPanel.add(categoryComboBox);
 	}
 	
@@ -743,6 +755,8 @@ public class BooksFrame extends JFrame {
 	
 	//设置表格行选中
 	public void SetSelected(){
+		if(CURRENTID == 0)
+			return ;
 		String queryName = BooksDao.getInstance().QueryBookNameByID(CURRENTID);
 		for(int i =0;i<booksTable.getRowCount();i++)
 			if(queryName.equals(booksTable.getValueAt(i,0).toString())){
@@ -781,8 +795,12 @@ public class BooksFrame extends JFrame {
 		}
 		else {  //不为空
 			if(CURRENTID !=0 ){  //当前选中了一项
-				if(!BooksDao.getInstance().QueryBookNumberByID(CURRENTID).equals(bookNumber) && BooksDao.getInstance().bookNumberIsExist(bookNumber))
+				if(!BooksDao.getInstance().QueryBookNumberByID(CURRENTID).equals(bookNumber) && BooksDao.getInstance().bookNumberIsExist(bookNumber)) {
 					JOptionPane.showMessageDialog(null,"书号已经存在","提示",JOptionPane.INFORMATION_MESSAGE);
+					bookNumberTextField.requestFocus();
+					return ;
+				}
+					
 				else				
 					BooksDao.getInstance().Update(
 							bookName,
@@ -799,8 +817,11 @@ public class BooksFrame extends JFrame {
 							CURRENTID);
 			}
 			else if(CURRENTID ==0 ){  //添加编辑室
-				if(BooksDao.getInstance().bookNumberIsExist(bookNumber))
+				if(BooksDao.getInstance().bookNumberIsExist(bookNumber)) {
 					JOptionPane.showMessageDialog(null,"书号已经存在","提示",JOptionPane.INFORMATION_MESSAGE);
+					bookNumberTextField.requestFocus();
+					return ;
+				}
 				else {
 					BooksDao.getInstance().Add(
 							bookName,
@@ -823,6 +844,7 @@ public class BooksFrame extends JFrame {
 			}
 			RefreshListPanel();//刷新列表
 			SetSelected();//设置选中
+			bookNameTextField.requestFocus();
 		}
 	}
 	
