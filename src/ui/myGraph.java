@@ -1,5 +1,6 @@
 package ui;
 
+import java.awt.Color;
 import java.awt.Font;
 import java.io.File;
 import java.io.IOException;
@@ -15,96 +16,120 @@ import org.jfree.chart.axis.NumberTickUnit;
 import org.jfree.chart.labels.StandardCategoryItemLabelGenerator;
 import org.jfree.chart.plot.CategoryPlot;
 import org.jfree.chart.plot.PlotOrientation;
+import org.jfree.chart.renderer.category.BarRenderer;
 import org.jfree.chart.renderer.category.BarRenderer3D;
+import org.jfree.chart.renderer.category.StandardBarPainter;
 import org.jfree.data.category.DefaultCategoryDataset;
 
 import model.zhifang;
 
-public class myGraph
-{
-    private List<zhifang> date;
+public class myGraph {
+	// 设置柱状图的柱子顶部是否显示数据
+	private static boolean baseItemLabelsVisible = true;
+	
+	private List<zhifang> date;
 
-    public myGraph(List<zhifang> date)
-    {
-        this.date = date;
-    }
+	public myGraph(List<zhifang> date) {
+		this.date = date;
+	}
 
-    public void create()
-    {
+	public void create(int year) {
 
-        // 柱状图数据
-        DefaultCategoryDataset dataset = new DefaultCategoryDataset();
-        // 添加数据
-        for (zhifang dd : date)
-            dataset.addValue(dd.getKuchun(), "", dd.getYuefen() + "月份");
+		
+		// 柱状图数据
+		DefaultCategoryDataset dataset = new DefaultCategoryDataset();
+		// 添加数据
+		for (zhifang dd : date)
+			dataset.addValue(dd.getKuchun(), "", dd.getYuefen() + "月份");
 
-        // 生成的柱状图
-        JFreeChart chart = ChartFactory.createBarChart3D("图书入库统计图表", "月份", // X轴的标签
-                "册数", // Y轴的标签
-                dataset, // 图标显示的数据集合
-                PlotOrientation.VERTICAL, // 图像的显示形式（水平或者垂直）
-                false, // 是否显示子标题
-                false, // 是否生成提示的标签
-                false); // 是否生成URL链接
+		// 生成的柱状图
+		JFreeChart chart = ChartFactory.createBarChart3D(year+"年图书入库统计图表", "月份", // X轴的标签
+				"册数", // Y轴的标签
+				dataset, // 图标显示的数据集合
+				PlotOrientation.VERTICAL, // 图像的显示形式（水平或者垂直）
+				false, // 是否显示子标题
+				false, // 是否生成提示的标签
+				false); // 是否生成URL链接
 
-        /*
-         * 处理图形上的乱码
-         */
+		/*
+		 * 处理图形上的乱码
+		 */
 
-        // 处理主标题的乱码
-        chart.getTitle().setFont(new Font("黑体", Font.BOLD, 18));
+		// 处理主标题的乱码
+		chart.getTitle().setFont(new Font("黑体", Font.BOLD, 18));
 
-        // 获取图表区域对象
-        CategoryPlot categoryPlot = (CategoryPlot) chart.getPlot();
+		// 获取图表区域对象
+		CategoryPlot categoryPlot = (CategoryPlot) chart.getPlot();
+		// 自定义柱状图中柱子的样式
+	    BarRenderer brender = new BarRenderer();
+	    brender.setSeriesPaint(1, Color.decode("#C0504D")); // 给series1 Bar
+	    brender.setSeriesPaint(0, Color.decode("#E46C0A")); // 给series2 Bar
+	    brender.setSeriesPaint(2, Color.decode("#4F81BD")); // 给series3 Bar
+	    brender.setSeriesPaint(3, Color.decode("#00B050")); // 给series4 Bar
+	    brender.setSeriesPaint(4, Color.decode("#7030A0")); // 给series5 Bar
+	    brender.setSeriesPaint(5, Color.decode("#00BF00")); // 给series6 Bar
+	 // 设置柱状图的顶端显示数字
+	    brender.setIncludeBaseInRange(true);
+	    brender.setBaseItemLabelGenerator(new StandardCategoryItemLabelGenerator());
+	    brender.setBaseItemLabelsVisible(isBaseItemLabelsVisible());
+	    // 设置图的背景为白色
+	    categoryPlot.setBackgroundPaint(Color.WHITE);
+	    // 设置背景虚线的颜色
+	    categoryPlot.setRangeGridlinePaint(Color.decode("#B6A2DE"));
+	    // 去掉柱状图的背景边框，使边框不可见
+	    categoryPlot.setOutlineVisible(true);
 
-        // 获取X轴的对象
-        CategoryAxis3D categoryAxis3D = (CategoryAxis3D) categoryPlot.getDomainAxis();
+	    categoryPlot.setRenderer(brender);
 
-        // 获取Y轴的对象
-        NumberAxis3D numberAxis3D = (NumberAxis3D) categoryPlot.getRangeAxis();
+		// 获取X轴的对象
+		CategoryAxis3D categoryAxis3D = (CategoryAxis3D) categoryPlot.getDomainAxis();
 
-        // 处理X轴上的乱码
-        categoryAxis3D.setTickLabelFont(new Font("黑体", Font.BOLD, 10));
+		// 获取Y轴的对象
+		NumberAxis3D numberAxis3D = (NumberAxis3D) categoryPlot.getRangeAxis();
 
-        // 处理X轴外的乱码
-        categoryAxis3D.setLabelFont(new Font("黑体", Font.BOLD, 10));
+		// 处理X轴上的乱码
+		categoryAxis3D.setTickLabelFont(new Font("黑体", Font.BOLD, 10));
 
-        // 处理Y轴上的乱码
-        numberAxis3D.setTickLabelFont(new Font("黑体", Font.BOLD, 10));
+		// 处理X轴外的乱码
+		categoryAxis3D.setLabelFont(new Font("黑体", Font.BOLD, 10));
 
-        // 处理Y轴外的乱码
-        numberAxis3D.setLabelFont(new Font("黑体", Font.BOLD, 10));
+		// 处理Y轴上的乱码
+		numberAxis3D.setTickLabelFont(new Font("黑体", Font.BOLD, 10));
 
-        // 自定义Y轴上显示的刻度，以10作为1格
-        numberAxis3D.setAutoTickUnitSelection(false);
-        NumberTickUnit unit = new NumberTickUnit(1);
-        numberAxis3D.setTickUnit(unit);
+		// 处理Y轴外的乱码
+		numberAxis3D.setLabelFont(new Font("黑体", Font.BOLD, 10));
 
-        // 获取绘图区域对象
-        BarRenderer3D barRenderer3D = (BarRenderer3D) categoryPlot.getRenderer();
+		// 自定义Y轴上显示的刻度，以10作为1格
+		numberAxis3D.setAutoTickUnitSelection(false);
+		NumberTickUnit unit = new NumberTickUnit(1);
+		numberAxis3D.setTickUnit(unit);
 
-        // 设置柱形图的宽度
-        barRenderer3D.setMaximumBarWidth(0.07);
+		// 获取绘图区域对象
+		/*BarRenderer3D barRenderer3D = (BarRenderer3D) categoryPlot.getRenderer();
 
-        // 在图形上显示数字
-        barRenderer3D.setBaseItemLabelGenerator(new StandardCategoryItemLabelGenerator());
-        barRenderer3D.setBaseItemLabelsVisible(true);
-        barRenderer3D.setBaseItemLabelFont(new Font("宋体", Font.BOLD, 10));
+		// 设置柱形图的宽度
+		barRenderer3D.setMaximumBarWidth(0.07);
 
-        // 柱状图和纵轴紧靠
-        categoryAxis3D.setLowerMargin(0.0);
+		// 在图形上显示数字
+		barRenderer3D.setBaseItemLabelGenerator(new StandardCategoryItemLabelGenerator());
+		barRenderer3D.setBaseItemLabelsVisible(true);
+		barRenderer3D.setBaseItemLabelFont(new Font("宋体", Font.BOLD, 10));*/
 
-        categoryAxis3D.setCategoryLabelPositions(CategoryLabelPositions.DOWN_45);
+		// 柱状图和纵轴紧靠
+		categoryAxis3D.setLowerMargin(0.0);
 
-        File file = new File("直方图.png");
-        try
-        {
-            ChartUtilities.saveChartAsJPEG(file, chart, 800, 600);
-        } catch (IOException e)
-        {
-            e.printStackTrace();
-        }
+		categoryAxis3D.setCategoryLabelPositions(CategoryLabelPositions.STANDARD);
 
-    }
+		File file = new File("直方图.png");
+		try {
+			ChartUtilities.saveChartAsJPEG(file, chart, 800, 600);
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+
+	}
+	public static boolean isBaseItemLabelsVisible() {
+	    return baseItemLabelsVisible;
+	}
 
 }

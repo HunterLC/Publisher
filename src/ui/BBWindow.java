@@ -88,8 +88,10 @@ public class BBWindow extends JFrame
         setTitle("\u56FE\u4E66\u5E93\u5B58\u4E00\u89C8");
         setBackground(Color.WHITE);
         setResizable(false);
-        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        setBounds(100, 100, 1080, 809);
+        setBounds(100, 100, 1080, 790);
+        setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+		setVisible(true);
+		setLocationRelativeTo(null);
         contentPane = new JPanel();
         contentPane.setBackground(Color.WHITE);
         contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
@@ -124,13 +126,13 @@ public class BBWindow extends JFrame
 
         panel = new JPanel();
         panel.setLayout(null);
-        panel.setBorder(new LineBorder(new Color(0, 153, 204)));
+        panel.setBorder(new LineBorder(Color.BLACK, 1, true));
         panel.setBackground(Color.WHITE);
-        panel.setBounds(10, 543, 894, 227);
+        panel.setBounds(10, 543, 894, 205);
         contentPane.add(panel);
 
         scrollPane_1 = new JScrollPane();
-        scrollPane_1.setBounds(10, 10, 410, 207);
+        scrollPane_1.setBounds(10, 10, 410, 176);
         panel.add(scrollPane_1);
 
         table_1 = new JTable();
@@ -179,25 +181,25 @@ public class BBWindow extends JFrame
         panel.add(textField);
 
         label = new JLabel("\u903B\u8F91\u8FD0\u7B97\u7B26");
-        label.setForeground(new Color(0, 153, 204));
+        label.setForeground(Color.BLACK);
         label.setFont(new Font("Î¢ÈíÑÅºÚ", Font.PLAIN, 16));
         label.setBounds(430, 37, 92, 31);
         panel.add(label);
 
         label_1 = new JLabel("\u5B57\u6BB5");
-        label_1.setForeground(new Color(0, 153, 204));
+        label_1.setForeground(Color.BLACK);
         label_1.setFont(new Font("Î¢ÈíÑÅºÚ", Font.PLAIN, 16));
         label_1.setBounds(572, 37, 32, 31);
         panel.add(label_1);
 
         label_2 = new JLabel("\u8FD0\u7B97\u7B26");
-        label_2.setForeground(new Color(0, 153, 204));
+        label_2.setForeground(Color.BLACK);
         label_2.setFont(new Font("Î¢ÈíÑÅºÚ", Font.PLAIN, 16));
         label_2.setBounds(681, 37, 57, 31);
         panel.add(label_2);
 
         label_3 = new JLabel("\u503C");
-        label_3.setForeground(new Color(0, 153, 204));
+        label_3.setForeground(Color.BLACK);
         label_3.setFont(new Font("Î¢ÈíÑÅºÚ", Font.PLAIN, 16));
         label_3.setBounds(792, 37, 40, 31);
         panel.add(label_3);
@@ -207,7 +209,7 @@ public class BBWindow extends JFrame
         button.setFont(new Font("Î¢ÈíÑÅºÚ", Font.PLAIN, 18));
         button.setFocusPainted(false);
         button.setBackground(SystemColor.menu);
-        button.setBounds(430, 169, 106, 36);
+        button.setBounds(427, 151, 106, 36);
         panel.add(button);
 
         JButton button_1 = new JButton("\u5220\u9664");
@@ -216,7 +218,7 @@ public class BBWindow extends JFrame
         button_1.setFont(new Font("Î¢ÈíÑÅºÚ", Font.PLAIN, 18));
         button_1.setFocusPainted(false);
         button_1.setBackground(SystemColor.menu);
-        button_1.setBounds(546, 169, 106, 36);
+        button_1.setBounds(543, 151, 106, 36);
         panel.add(button_1);
 
         JButton button_2 = new JButton("\u67E5\u8BE2");
@@ -341,7 +343,7 @@ public class BBWindow extends JFrame
         button_2.setFont(new Font("Î¢ÈíÑÅºÚ", Font.PLAIN, 18));
         button_2.setFocusPainted(false);
         button_2.setBackground(SystemColor.menu);
-        button_2.setBounds(661, 169, 106, 36);
+        button_2.setBounds(658, 151, 106, 36);
         panel.add(button_2);
 
         JButton button_3 = new JButton("\u5173\u95ED");
@@ -356,14 +358,14 @@ public class BBWindow extends JFrame
         button_3.setFont(new Font("Î¢ÈíÑÅºÚ", Font.PLAIN, 18));
         button_3.setFocusPainted(false);
         button_3.setBackground(SystemColor.menu);
-        button_3.setBounds(777, 169, 106, 36);
+        button_3.setBounds(774, 151, 106, 36);
         panel.add(button_3);
 
         JPanel panel_1 = new JPanel();
-        panel_1.setBounds(914, 543, 148, 227);
+        panel_1.setBounds(914, 543, 148, 205);
         contentPane.add(panel_1);
         panel_1.setLayout(null);
-        panel_1.setBorder(new LineBorder(new Color(0, 153, 204)));
+        panel_1.setBorder(new LineBorder(Color.BLACK, 1, true));
         panel_1.setBackground(Color.WHITE);
 
         JButton btnPdf = new JButton("PDF");
@@ -415,7 +417,7 @@ public class BBWindow extends JFrame
         panel_1.add(btnExcel);
 
         JLabel label_4 = new JLabel("\u62A5\u8868\u751F\u6210");
-        label_4.setForeground(new Color(0, 153, 204));
+        label_4.setForeground(Color.BLACK);
         label_4.setFont(new Font("Î¢ÈíÑÅºÚ", Font.PLAIN, 16));
         label_4.setBounds(20, 20, 92, 31);
         panel_1.add(label_4);

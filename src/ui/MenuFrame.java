@@ -277,6 +277,8 @@ public class MenuFrame extends JFrame {
 			case "W_zhcx":new Search_1();break;
 			case "W_mhcx":new Search_2();break;
 			case "W_wncx":new Search_3();break;
+			case "W_kcbb":new BBWindow();break;
+			case "W_rkbb":new BB1Window();break;
 			
 		}
 	}

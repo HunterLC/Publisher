@@ -71,8 +71,10 @@ public class BB1Window extends JFrame
         setTitle("\u56FE\u4E66\u5165\u5E93\u4E00\u89C8");
         setBackground(Color.WHITE);
         setResizable(false);
-        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setBounds(100, 100, 1080, 809);
+        setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+		setVisible(true);
+		setLocationRelativeTo(null);
         contentPane = new JPanel();
         contentPane.setBackground(Color.WHITE);
         contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
@@ -86,7 +88,7 @@ public class BB1Window extends JFrame
 
         JPanel panel = new JPanel();
         panel.setLayout(null);
-        panel.setBorder(new LineBorder(new Color(0, 153, 204)));
+        panel.setBorder(new LineBorder(new Color(128, 128, 128), 1, true));
         panel.setBackground(Color.WHITE);
         panel.setBounds(10, 10, 523, 62);
         contentPane.add(panel);
@@ -101,26 +103,26 @@ public class BB1Window extends JFrame
         panel.add(choice);
 
         JLabel label = new JLabel("\u5165\u5E93\u5E74\u4EFD\u9009\u62E9");
-        label.setForeground(new Color(0, 153, 204));
+        label.setForeground(Color.BLACK);
         label.setFont(new Font("微软雅黑", Font.PLAIN, 16));
         label.setBounds(10, 10, 108, 31);
         panel.add(label);
 
         JPanel panel_1 = new JPanel();
         panel_1.setLayout(null);
-        panel_1.setBorder(new LineBorder(new Color(0, 153, 204)));
+        panel_1.setBorder(new LineBorder(Color.GRAY, 1, true));
         panel_1.setBackground(Color.WHITE);
         panel_1.setBounds(543, 10, 519, 62);
         contentPane.add(panel_1);
 
         JLabel label_3 = new JLabel("\u62A5\u8868\u751F\u6210");
-        label_3.setBounds(10, 10, 92, 31);
+        label_3.setBounds(14, 14, 92, 31);
         panel_1.add(label_3);
-        label_3.setForeground(new Color(0, 153, 204));
+        label_3.setForeground(Color.BLACK);
         label_3.setFont(new Font("微软雅黑", Font.PLAIN, 16));
 
-        JButton button_3 = new JButton("\u76F4\u65B9\u56FE");
-        button_3.setBounds(315, 10, 106, 36);
+        JButton button_3 = new JButton("\u751F\u6210\u76F4\u65B9\u56FE");
+        button_3.setBounds(315, 10, 130, 36);
         panel_1.add(button_3);
         button_3.addActionListener(new ActionListener()
         {
@@ -129,7 +131,7 @@ public class BB1Window extends JFrame
                 List<zhifang> zhi = new ArrayList<zhifang>();
                 zhi = method.getyuefen("%" + choice.getSelectedItem() + "%");
                 myGraph graph = new myGraph(zhi);
-                graph.create();
+                graph.create(Integer.valueOf(choice.getSelectedItem()));
                 JOptionPane.showMessageDialog(null, "直方图生成成功", "成功", JOptionPane.INFORMATION_MESSAGE);
             }
         });
@@ -138,8 +140,8 @@ public class BB1Window extends JFrame
         button_3.setFocusPainted(false);
         button_3.setBackground(SystemColor.menu);
 
-        JButton button_2 = new JButton("PDF");
-        button_2.addActionListener(new ActionListener()
+        JButton btnpdf = new JButton("\u5BFC\u51FAPDF");
+        btnpdf.addActionListener(new ActionListener()
         {
             public void actionPerformed(ActionEvent e)
             {
@@ -155,12 +157,12 @@ public class BB1Window extends JFrame
                 JOptionPane.showMessageDialog(null, "PDF报表生成成功", "成功", JOptionPane.INFORMATION_MESSAGE);
             }
         });
-        button_2.setBounds(138, 10, 106, 36);
-        panel_1.add(button_2);
-        button_2.setForeground(Color.BLACK);
-        button_2.setFont(new Font("微软雅黑", Font.PLAIN, 18));
-        button_2.setFocusPainted(false);
-        button_2.setBackground(SystemColor.menu);
+        btnpdf.setBounds(138, 10, 130, 36);
+        panel_1.add(btnpdf);
+        btnpdf.setForeground(Color.BLACK);
+        btnpdf.setFont(new Font("微软雅黑", Font.PLAIN, 18));
+        btnpdf.setFocusPainted(false);
+        btnpdf.setBackground(SystemColor.menu);
 
         table = new JTable();
         table.setRowHeight(30);
